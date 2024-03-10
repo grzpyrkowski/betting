@@ -603,7 +603,7 @@ video {
 }
 
 .bg-banner {
-  background-image: url('./layout/banner.jpg');
+  background-image: url('landing-page/banner.jpg');
 }
 
 .text-amber-100 {
