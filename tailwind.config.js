@@ -2,11 +2,13 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      sm: '440px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1440px',
+    },
     extend: {
-      backgroundImage: {
-        'banner': "url('./layout/banner.jpg')",
-        'gradient': 'linear-gradient(to top, rgba(15,23,42,1) 15%, rgba(15,23,42,0) 100%)',
-      },
       boxShadow: {
         'fullShadow-3': '0 0 5px 5px',
       }

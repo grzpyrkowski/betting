@@ -14,7 +14,7 @@ export default function App() {
     );
 
   return (
-      <div className="App bg-slate-800 text-amber-100">
+      <div className="App h-full uppercase text-base xl:text-3xl md:text-2xl">
             <RouterProvider router={router} />
       </div>
   );

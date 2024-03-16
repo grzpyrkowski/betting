@@ -598,14 +598,6 @@ video {
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
 
-.bg-gradient {
-  background-image: linear-gradient(to top, rgba(15,23,42,1) 15%, rgba(15,23,42,0) 100%);
-}
-
-.bg-banner {
-  background-image: url('landing-page/banner.jpg');
-}
-
 .text-amber-100 {
   --tw-text-opacity: 1;
   color: rgb(254 243 199 / var(--tw-text-opacity));
