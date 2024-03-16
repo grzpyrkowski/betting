@@ -1,5 +1,6 @@
 import banner from "./banner.jpg";
 import arrow from "./down_arrow.svg";
+import {useEffect, useRef} from "react";
 
 export default function LandingPage() {
 
@@ -20,6 +21,13 @@ export default function LandingPage() {
         )
     }
 
+    const scrollDown = () => {
+        window.scrollTo({
+            top: 2000,
+            behavior: 'smooth',
+        });
+    }
+
     return (
         <>
             <div className="relative mb-8">
@@ -28,7 +36,7 @@ export default function LandingPage() {
                     <MainButton value="Scores"/>
                 </div>
                 <div className="absolute left-0 -bottom-1.5 md:bottom-0 right-0 flex">
-                    <div className="m-auto">
+                    <div className="m-auto" onClick={scrollDown}>
                         <MainButton value="Read more"/>
                         <img className="w-1/3 lg:1/2 m-auto cursor-pointer" src={arrow} alt="down-arrow"/>
                     </div>

@@ -14,7 +14,7 @@ export default function App() {
     );
 
   return (
-      <div className="App h-full uppercase text-base xl:text-3xl md:text-2xl">
+      <div className="App h-full uppercase text-base md:text-2xl xl:text-3xl xxl:text-5xl 4k:text-7xl">
             <RouterProvider router={router} />
       </div>
   );
