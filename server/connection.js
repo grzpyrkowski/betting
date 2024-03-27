@@ -1,16 +1,10 @@
 import {MongoClient} from "mongodb";
-import {user, password} from "./secret/password.js";
+import {user, password} from "./secret/creds.js";
 const uri = `mongodb+srv://${user}:${password}@cluster0.ncab2js.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-import {displayCollection} from "./crud.js";
+import {displayCollection, createManyDocuments} from "./crud.js";
+import {teamsCollection} from "./data/teamsCollection.js";
 
-async function listDatabases(client){
-    const databasesList = await client.db().admin().listDatabases();
-
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-}
-
-export async function main() {
+async function main() {
 
     const client = new MongoClient(uri);
 
@@ -19,10 +13,12 @@ export async function main() {
     try {
         await client.connect();
 
+        await createManyDocuments(client, "teams", teamsCollection)
+
         // await createUser(client,
         //     {
         //         name: "Madzia",
-        //         password.js: "Yuki1",
+        //         creds.js: "Yuki1",
         //         role: "admin",
         //         points: 50
         //     })
@@ -44,15 +40,17 @@ export async function main() {
 
         // await findTeam(client, "Poland");
 
-        await displayCollection(client, "users");
+        // await displayCollection(client, "users");
 
-        // await updateUser(client, "Marzia", {password.js: "Yuki3"});
+        // await updateUser(client, "Marzia", {creds.js: "Yuki3"});
 
         // await updateAllUsersMatchingSpecifiedName(client, "Madzia", {points: 120});
 
         // await deleteUserByName(client, "Marzia");
 
         // await deleteAllMatchesWithSpecifiedDate(client, "2024-03-26");
+
+       await createManyDocuments(client, "teams", teamsCollection)
 
     } catch (e) {
         console.error(e);

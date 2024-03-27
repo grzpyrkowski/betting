@@ -1,3 +1,10 @@
+async function listDatabases(client){
+    const databasesList = await client.db().admin().listDatabases();
+
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+}
+
 export async function findDocument(client, collection, nameOfTeam) {
     const result = await client.db("euro").collection(collection).findOne({name: nameOfTeam});
 

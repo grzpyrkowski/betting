@@ -15,15 +15,17 @@ export default function Layout() {
     const FooterButton = (props) => {
         if (props.url) {
             return (
-                <div className="flex my-1 md:my-2 lg:my-5 xl:my-8 xxl:my-12 4k:my-16">
-                    <img src={props.url} alt={props.value} className="w-1/12 max-sm:w-2/12"/>
-                    <span className="top-0 bottom-0 my-auto ml-3">{props.value}</span>
+                <div className="my-5 lg:my-8 xl:my-10 xxl:my-14 4k:my-20">
+                    <span className="top-0 bottom-0 my-auto ml-3 flex">
+                        <img src={props.url} alt={props.value} className="mr-3 max-sm:mr-1.5 w-5 xl:w-7 xxl:w-10"/>
+                        {props.value}
+                    </span>
                 </div>
             )
         } else {
             return (
-                <div className="flex my-5 lg:my-8 xl:my-14 xxl:my-20 4k:my-24">
-                    <p className="p-auto ">{props.value}</p>
+                <div className="my-5 lg:my-8 xl:my-10 xxl:my-14 4k:my-20">
+                    <p className="p-auto">{props.value}</p>
                 </div>
             )
         }
@@ -43,14 +45,14 @@ export default function Layout() {
             <main className="w-3/4 mx-auto">
                 <Outlet />
             </main>
-            <footer className="h-1/6 mt-8 max-md:mt-28 bg-slate-800">
+            <footer className="mt-8 max-md:mt-28 bg-slate-800">
                 <div className="w-3/4 mx-auto flex">
-                    <div className="w-1/2 border-slate-900 my-5 ml-5 max-sm:pl-0 border-r-2">
+                    <div className="w-1/2 border-slate-900 max-sm:pl-0 border-r-2">
                         <FooterButton url={facebook} value="Facebook"/>
                         <FooterButton url={instagram} value="Instagram"/>
                         <FooterButton url={twitter} value="X"/>
                     </div>
-                    <div className="w-1/2 px-10">
+                    <div className="w-1/2 max-md:px-3 px-10">
                         <FooterButton value="Policy"/>
                         <FooterButton value="FAQ"/>
                         <FooterButton value="Contact"/>
