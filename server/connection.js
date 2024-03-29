@@ -50,7 +50,7 @@ async function main() {
 
         // await deleteAllMatchesWithSpecifiedDate(client, "2024-03-26");
 
-       await createManyDocuments(client, "teams", teamsCollection)
+       // await createManyDocuments(client, "teams", teamsCollection)
 
     } catch (e) {
         console.error(e);
