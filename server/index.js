@@ -1,7 +1,8 @@
-import express, { json } from "express";
+import express from "express";
 import { connectDatabase } from "./connection.js";
-import { User } from "./models/user.model.js"
 import {userRouter} from "./routes/user.route.js"
+import {teamRouter} from "./routes/team.route.js";
+import {matchRouter} from "./routes/match.route.js";
 const app = express();
 
 //middleware
@@ -11,6 +12,8 @@ app.use(express.urlencoded({extended: "false"}))
 
 //routes
 app.use("/api/users", userRouter);
+app.use("/api/teams", teamRouter);
+app.use("/api/matches", matchRouter);
 
 app.get('/', (req, res) => {
     res.send("siema nara");

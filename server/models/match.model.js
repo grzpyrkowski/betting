@@ -1,20 +1,18 @@
 import mongoose from "mongoose";
 
-const TeamSchema = new mongoose.Schema(
+const MatchSchema = new mongoose.Schema(
     {
-        _id: {
+        date: {
+            type: Date,
+            required: true
+        },
+        status: {
             type: String,
             required: true
         },
-
-        name: {
-            type: String,
-            required: true
-        },
-
-        scores: {
+        teams: {
             type: Array,
-            required: false
+            required: true
         }
     },
     {
@@ -22,5 +20,5 @@ const TeamSchema = new mongoose.Schema(
     }
 )
 
-export const Team = mongoose.model("Team", TeamSchema);
+export const Match = mongoose.model("Match", MatchSchema);
 
