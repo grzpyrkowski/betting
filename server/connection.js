@@ -1,16 +1,16 @@
 import {MongoClient} from "mongodb";
 import {user, password} from "./secret/creds.js";
+import mongoose from "mongoose";
 import {displayCollection, createManyDocuments} from "./crud.js";
 import {teamsCollection} from "./data/teamsCollection.js";
 
-const uri = `mongodb+srv://${user}:${password}@cluster0.ncab2js.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${user}:${password}@cluster0.ncab2js.mongodb.net/euro?retryWrites=true&w=majority&appName=Cluster0`;
 
 export async function connectDatabase() {
 
-    const client = new MongoClient(uri);
 
     try {
-        await client.connect()
+        await mongoose.connect(uri);
 
         // await createManyDocuments(client, "teams", teamsCollection)
 
@@ -39,7 +39,7 @@ export async function connectDatabase() {
 
         // await findTeam(client, "Poland");
 
-        await displayCollection(client, "users");
+        // await displayCollection(client, "users");
 
         // await updateUser(client, "Marzia", {creds.js: "Yuki3"});
 
@@ -54,7 +54,7 @@ export async function connectDatabase() {
     } catch (e) {
         console.error(e);
     } finally {
-        await client.close();
+        // await client.close();
     }
 }
 
