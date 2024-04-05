@@ -13,6 +13,13 @@ module.exports = {
     extend: {
       boxShadow: {
         'fullShadow-3': '0 0 5px 5px',
+      },
+      fontFamily: {
+        "inter": ['"Inter", sans-serif'],
+        "open": ['"Open", sans-serif'],
+        "ptFont": ['"PT", sans-serif'],
+        "yeseva": ['"Yeseva", sans'],
+        "montserrat": ['"Montserrat", serif']
       }
     },
   },

@@ -52,13 +52,15 @@ export default function LandingPage() {
                 </div>
                 <img className="w-full" src={banner} alt="background-banner"/>
             </div>
-            <InfoPanel content="Create a free account or login if you have one already"/>
-            <img className="w-1/12 mx-auto" src={arrow} alt="down-arrow"/>
+            <div className="font-inter">
+                <InfoPanel content="Create a free account or login if you have one already"/>
+                <img className="w-1/12 mx-auto" src={arrow} alt="down-arrow"/>
 
-            <InfoPanel content="Go to 'matches' and bet"/>
-            <img className="w-1/12 mx-auto" src={arrow} alt="down-arrow"/>
+                <InfoPanel content="Go to 'matches' and bet"/>
+                <img className="w-1/12 mx-auto" src={arrow} alt="down-arrow"/>
 
-            <InfoPanel content="Check scores and compare to another players!"/>
+                <InfoPanel content="Check scores and compare to another players!"/>
+            </div>
         </>
     )
 }

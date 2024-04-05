@@ -3,12 +3,11 @@ import facebook from "./facebook.svg";
 import twitter from "./twitter.svg";
 import instagram from "./instagram.svg";
 
-
 export default function Layout() {
 
     const HeaderButton = (props) => {
         return (
-            <button className="p-2 md:mx-2 xxl:m-2 4k:m-4 uppercase">{props.value}</button>
+            <button className="p-3 md:mx-2 xxl:m-2 4k:m-4 uppercase">{props.value}</button>
         )
     }
 
@@ -33,7 +32,7 @@ export default function Layout() {
 
     return (
         <>
-            <header className="sticky w-full h-10 md:h-14 xxl:h-20 4k:h-32 top-0 bg-slate-800 z-10">
+            <header className="sticky w-full h-12 md:h-14 xl:h-16 xxl:h-20 4k:h-32 top-0 bg-slate-800 z-10">
                 <div className="float-left mx-7 max-sm:mx-2">
                     <HeaderButton value={"Dark mode"}/>
                 </div>

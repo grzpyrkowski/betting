@@ -1,4 +1,6 @@
 import express from "express";
+import corsMiddleware from "./cors/index.js";
+import cors from "cors";
 import { connectDatabase } from "./connection.js";
 import {userRouter} from "./routes/user.route.js"
 import {teamRouter} from "./routes/team.route.js";
@@ -7,6 +9,9 @@ const app = express();
 
 //middleware
 app.use(express.json());
+app.options('*', cors());
+app.use(corsMiddleware);
+
 //allow pass data from forms
 app.use(express.urlencoded({extended: "false"}))
 
