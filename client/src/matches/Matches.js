@@ -3,18 +3,23 @@ import axios from "axios";
 
 const TeamButton = (props) => {
     return (
-        <button>{props.value}</button>
+        <div className="p-2">
+            <button>{props.value}</button>
+        </div>
     )
 }
 
-const Match = () => {
+const Match = (props) => {
     return (
-        <div className="bg-slate-400 p-10 rounded-xl flex">
-            <div className="mr-10">
-                <span>date</span>
+        <div key={props.key} className="bg-slate-400 p-10 rounded-xl flex">
+            <div className="w-3/4 flex">
+                {props.teams?.map(team => (
+                    <TeamButton value={team.team_id}/>
+                ))}
             </div>
-            <div>
-                {/*<TeamButton value="Polska"/> - <TeamButton value="Walia"/>*/}
+            <div className="mr-10">
+                <p>{props.date}, {props.time}</p>
+                <p>{props.status}</p>
             </div>
         </div>
     )
@@ -28,21 +33,23 @@ export default function Matches() {
     useEffect(() => {
         axios.get(`${baseURL}/matches`)
             .then((data) => {
-                setMatches(data.data)
+                setMatches(data.data);
             })
     }, []);
 
-    const renderedMatches = matches.map(match  => (
-        <div key={match.id}>
-            <p>{match.date}</p>
-            <p>{match.status}</p>
-            {match.teams.map(team => (
-                <div>{team.teamA_id}</div>
-            ))}
-        </div>
-    ))
+    let renderedMatches = null;
 
-
+    try {
+         renderedMatches = matches.map(match => (
+            <Match
+                key={match.id}
+                date={match.date.slice(0, 10)}
+                time={match.date.slice(11, 16)}
+                status={match.status}
+                teams={match.teams}
+            />
+        ))
+    } catch (error) {}
 
     return (
         <>

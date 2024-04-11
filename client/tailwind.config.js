@@ -16,10 +16,10 @@ module.exports = {
       },
       fontFamily: {
         "inter": ['"Inter", sans-serif'],
-        "open": ['"Open", sans-serif'],
         "ptFont": ['"PT", sans-serif'],
-        "yeseva": ['"Yeseva", sans'],
-        "montserrat": ['"Montserrat", serif']
+        "montserrat": ['"Montserrat", serif'],
+        "baskerville": ['"Libre-Baskerville", sans-serif]'],
+        "roboto": ['"Roboto", sans-serif]']
       }
     },
   },

@@ -1,4 +1,4 @@
-import {Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import facebook from "./facebook.svg";
 import twitter from "./twitter.svg";
 import instagram from "./instagram.svg";
@@ -7,7 +7,9 @@ export default function Layout() {
 
     const HeaderButton = (props) => {
         return (
-            <button className="p-3 md:mx-2 xxl:m-2 4k:m-4 uppercase">{props.value}</button>
+            <Link to={"/" + props.value}>
+                <button className="p-3 md:mx-2 xxl:m-2 4k:m-4 uppercase">{props.value}</button>
+            </Link>
         )
     }
 
@@ -37,8 +39,8 @@ export default function Layout() {
                     <HeaderButton value={"Dark mode"}/>
                 </div>
                 <div className="float-right mx-7 max-sm:mx-2">
-                    <HeaderButton value={"Login"}/>
-                    <HeaderButton value={"Register"}/>
+                    <HeaderButton value={"login"}/>
+                    <HeaderButton value={"register"}/>
                 </div>
             </header>
             <main className="w-3/4 mx-auto">

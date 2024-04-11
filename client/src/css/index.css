@@ -3,6 +3,49 @@
 @tailwind utilities;
 @layer base {
     html {
-        @apply bg-slate-700 text-amber-100;
+        @apply bg-slate-700 text-amber-100 font-roboto;
     }
+    .auth {
+        display: table;
+        border-radius: 8px;
+    }
+    .auth button {
+        padding: 6px;
+        width: 50%;
+        display: table-cell;
+    }
+    .auth-form div {
+        display: table;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+    }
+    .auth-form span {
+        display: table-cell;
+        width: 35%;
+        padding-right: 1rem;
+    }
+    .auth-form input {
+        display: table-cell;
+    }
+
+    /*.login-form {*/
+    /*    display: table;*/
+    /*    border-radius: 8px;*/
+    /*}*/
+    /*.login-form button {*/
+    /*    min-height: 3rem;*/
+    /*    width: 50%;*/
+    /*    display: table-cell;*/
+    /*}*/
+    /*.login-form div {*/
+    /*    display: table;*/
+    /*    margin: 2rem auto;*/
+    /*}*/
+    /*.login-form span {*/
+    /*    display: table-cell;*/
+    /*    width: 30%;*/
+    /*}*/
+    /*.login-form input {*/
+    /*    display: table-cell;*/
+    /*}*/
 }
