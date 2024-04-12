@@ -1,5 +1,5 @@
-import banner from "./banner.jpg";
-import arrow from "./down_arrow.svg";
+import banner from "../data/landing-page/banner.jpg";
+import arrow from "../data/landing-page/down_arrow.svg";
 import {Link} from "react-router-dom";
 
 export default function LandingPage() {

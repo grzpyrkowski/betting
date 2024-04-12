@@ -1,9 +1,26 @@
-import {Link, Outlet} from "react-router-dom";
-import facebook from "./facebook.svg";
-import twitter from "./twitter.svg";
-import instagram from "./instagram.svg";
+import {Link, Outlet, useNavigate} from "react-router-dom";
+import facebook from "../data/layout/facebook.svg";
+import twitter from "../data/layout/twitter.svg";
+import instagram from "../data/layout/instagram.svg";
+import {useContext} from "react";
+import {UserContext} from "../contexts/user.context";
 
 export default function Layout() {
+    const {logOutUser} = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const logOut = async () => {
+        try {
+            const loggedOut = await logOutUser();
+            navigate('/');
+
+            if (loggedOut) {
+                window.location.reload(true);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     const HeaderButton = (props) => {
         return (
@@ -41,6 +58,7 @@ export default function Layout() {
                 <div className="float-right mx-7 max-sm:mx-2">
                     <HeaderButton value={"login"}/>
                     <HeaderButton value={"register"}/>
+                    <button value="log out" onClick={logOut}>logout</button>
                 </div>
             </header>
             <main className="w-3/4 mx-auto">
