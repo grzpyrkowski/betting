@@ -5,7 +5,8 @@ const corsOptions = {
     optionsSuccessStatus: 200,
     headers: {
         'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Authorization',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Origin': '*'
     }
 }
 

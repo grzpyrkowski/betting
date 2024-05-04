@@ -10,15 +10,19 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: [true, "Please enter the password"]
         },
+        email: {
+            type: String,
+            required: [true, "Please enter the email"]
+        },
         points: {
             type: Number,
             required: true,
             default: 50
         },
         role: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
-            default: "user"
+            ref: "Role"
         },
         rank: {
             type: String,
