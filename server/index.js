@@ -6,8 +6,6 @@ import {userRouter} from "./routes/user.route.js"
 import {teamRouter} from "./routes/team.route.js";
 import {matchRouter} from "./routes/match.route.js";
 const app = express();
-import cookieSession from "cookie-session";
-import { cookieSecret } from "./secret/creds.js"
 
 //middleware
 app.use(express.json());
@@ -16,14 +14,6 @@ app.use(corsMiddleware);
 
 //allow pass data from forms
 app.use(express.urlencoded({extended: "false"}));
-
-app.use(
-    cookieSession({
-        name: "euro-session",
-        keys: cookieSecret,
-        httpOnly: true
-    })
-)
 
 //routes
 app.use("/api/users", userRouter);

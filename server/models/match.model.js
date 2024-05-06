@@ -10,8 +10,8 @@ const MatchSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        teams: {
-            type: Array,
+        teams_id: {
+            type: [mongoose.Schema.Types.ObjectId],
             required: true
         }
     },

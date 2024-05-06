@@ -10,11 +10,6 @@ const TeamSchema = new mongoose.Schema(
         name: {
             type: String,
             required: true
-        },
-
-        scores: {
-            type: Array,
-            required: false
         }
     },
     {

@@ -11,11 +11,11 @@ const BetSchema = new mongoose.Schema(
             required: true
         },
         match_id: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             required: true
         },
         user_id: {
-            type: Array,
+            type: mongoose.Schema.Types.ObjectId,
             required: true
         }
     },

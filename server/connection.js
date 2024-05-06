@@ -1,9 +1,7 @@
 import {user, password} from "./secret/creds.js";
 import mongoose from "mongoose";
-import db from "./models/index.js";
 
 const uri = `mongodb+srv://${user}:${password}@cluster0.ncab2js.mongodb.net/euro?retryWrites=true&w=majority&appName=Cluster0`;
-const Role = db.role;
 
 export async function connectDatabase() {
 
@@ -14,42 +12,11 @@ export async function connectDatabase() {
         })
             .then(() => {
                 console.log("Connected to Database");
-                initial();
             })
             .catch(err => {
                 console.error(err);
             });
 
-        function initial() {
-            Role.estimatedDocumentCount((err, count) => {
-                if (!err && count === 0) {
-                    new Role({
-                        name: "user"
-                    }).save(err => {
-                        if (err) console.error(err);
-                    });
-
-                    console.log("added 'user' to roles collection");
-
-
-                    new Role({
-                        name: "mod"
-                    }).save(err => {
-                        if (err) console.error(err);
-                    });
-
-                    console.log("added 'mod' to roles collection");
-
-                    new Role({
-                        name: "admin"
-                    }).save(err => {
-                        if (err) console.error(err);
-                    });
-
-                    console.log("added 'admin' to roles collection");
-                }
-            });
-        }
 
         // await createManyDocuments(client, "teams", teamsCollection)
 
