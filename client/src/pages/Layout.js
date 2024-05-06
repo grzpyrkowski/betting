@@ -1,34 +1,11 @@
-import {Link, Outlet, useNavigate} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import facebook from "../data/layout/facebook.svg";
 import twitter from "../data/layout/twitter.svg";
 import instagram from "../data/layout/instagram.svg";
-import {useContext} from "react";
-import {UserContext} from "../contexts/user.context";
+import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 
 export default function Layout() {
-    const {logOutUser} = useContext(UserContext);
-    const navigate = useNavigate();
-
-    const logOut = async () => {
-        try {
-            const loggedOut = await logOutUser();
-            navigate('/');
-
-            if (loggedOut) {
-                window.location.reload(true);
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-    const HeaderButton = (props) => {
-        return (
-            <Link to={"/" + props.value}>
-                <button className="p-3 md:mx-2 xxl:m-2 4k:m-4 uppercase">{props.value}</button>
-            </Link>
-        )
-    }
+    const { login, register, logout, isAuthenticated } = useKindeAuth();
 
     const FooterButton = (props) => {
         if (props.url) {
@@ -53,23 +30,30 @@ export default function Layout() {
         <>
             <header className="sticky w-full h-12 md:h-14 xl:h-16 xxl:h-20 4k:h-32 top-0 bg-slate-800 z-10">
                 <div className="float-left mx-7 max-sm:mx-2">
-                    <HeaderButton value={"Dark mode"}/>
+                    <button value={"Dark mode"}>Dark mode</button>
                 </div>
                 <div className="float-right mx-7 max-sm:mx-2">
-                    <HeaderButton value={"login"}/>
-                    <HeaderButton value={"register"}/>
-                    <button value="log out" onClick={logOut}>logout</button>
+                    { isAuthenticated ?
+                        <div>
+                            <Link to={'/profile'}><button>Profile</button></Link>
+                            <button onClick={logout}>Log Out</button>
+                        </div> :
+                        <div>
+                            <button onClick={register}>Register</button>
+                            <button onClick={login}>Log In</button>
+                        </div>
+                    }
                 </div>
             </header>
             <main className="w-3/4 mx-auto">
-                <Outlet />
+                <Outlet/>
             </main>
             <footer className="mt-8 max-md:mt-28 bg-slate-800">
                 <div className="w-3/4 mx-auto flex">
                     <div className="w-1/2 border-slate-900 max-sm:pl-0 border-r-2">
                         <FooterButton url={facebook} value="Facebook"/>
                         <FooterButton url={instagram} value="Instagram"/>
-                        <FooterButton url={twitter} value="X"/>
+                        <FooterButton url={twitter} value="Twitter"/>
                     </div>
                     <div className="w-1/2 max-md:px-3 px-10">
                         <FooterButton value="Policy"/>
