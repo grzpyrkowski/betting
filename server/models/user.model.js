@@ -18,15 +18,6 @@ const UserSchema = new mongoose.Schema(
             type: Number,
             required: true,
             default: 50
-        },
-        role: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: "Role"
-        },
-        rank: {
-            type: String,
-            required: false
         }
     },
     {

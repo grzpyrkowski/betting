@@ -10,10 +10,11 @@ const MatchSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        teams_id: {
-            type: [mongoose.Schema.Types.ObjectId],
+        teams_id: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Team",
             required: true
-        }
+        }]
     },
     {
         timestamps: true

@@ -5,7 +5,7 @@ import instagram from "../data/layout/instagram.svg";
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 
 export default function Layout() {
-    const { login, register, logout, isAuthenticated } = useKindeAuth();
+    const { login, register, logout, isAuthenticated, getPermissions } = useKindeAuth();
 
     const FooterButton = (props) => {
         if (props.url) {
@@ -28,13 +28,21 @@ export default function Layout() {
 
     return (
         <>
-            <header className="sticky w-full h-12 md:h-14 xl:h-16 xxl:h-20 4k:h-32 top-0 bg-slate-800 z-10">
+            <header className="sticky w-full h-12 md:h-14 xl:h-16 xxl:h-20 4k:h-32 top-0 bg-slate-800 z-10 flex place-content-between">
                 <div className="float-left mx-7 max-sm:mx-2">
-                    <button value={"Dark mode"}>Dark mode</button>
+                    <button>Dark mode</button>
                 </div>
-                <div className="float-right mx-7 max-sm:mx-2">
+                <div className="">
+                    <Link to={'/'}><button>Main</button> </Link>
+                </div>
+                <div className="right-0 mx-7 max-sm:mx-2">
                     { isAuthenticated ?
                         <div>
+                            {
+                                getPermissions().orgCode === "org_5f796b31434" ?
+                                    <Link to={'/admin'}><button>Admin</button></Link>
+                                    : <></>
+                            }
                             <Link to={'/profile'}><button>Profile</button></Link>
                             <button onClick={logout}>Log Out</button>
                         </div> :

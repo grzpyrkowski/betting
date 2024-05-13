@@ -23,7 +23,7 @@ export async function connectDatabase() {
         // await createUser(client,
         //     {
         //         name: "Madzia",
-        //         creds.js: "Yuki1",
+        //         password: "Yuki1",
         //         role: "admin",
         //         points: 50
         //     })
@@ -47,7 +47,7 @@ export async function connectDatabase() {
 
         // await displayCollection(client, "users");
 
-        // await updateUser(client, "Marzia", {creds.js: "Yuki3"});
+        // await updateUser(client, "Marzia", {password: "Yuki3"});
 
         // await updateAllUsersMatchingSpecifiedName(client, "Madzia", {points: 120});
 

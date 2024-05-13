@@ -12,10 +12,12 @@ const BetSchema = new mongoose.Schema(
         },
         match_id: {
             type: mongoose.Schema.Types.ObjectId,
+            ref: "Match",
             required: true
         },
         user_id: {
             type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             required: true
         }
     },
