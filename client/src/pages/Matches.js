@@ -1,37 +1,26 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-const TeamButton = (props) => {
-    return (
-        <div className="p-2">
-            <button>{props.value}</button>
-        </div>
-    )
-}
-
 const Match = (props) => {
     return (
-        <div key={props.key} className="bg-slate-400 p-10 rounded-xl flex">
+        <button className="bg-slate-400 p-10 rounded-xl flex">
             <div className="w-3/4 flex">
-                {props.teams?.map(team => (
-                    <TeamButton value={team.team_id}/>
-                ))}
+                <div>{props.teamA}</div>
+                <div>{props.teamB}</div>
             </div>
             <div className="mr-10">
                 <p>{props.date}, {props.time}</p>
                 <p>{props.status}</p>
             </div>
-        </div>
+        </button>
     )
 }
 
 export default function Matches() {
     const [matches, setMatches] = useState([""])
 
-    const baseURL = "http://localhost:4000/api";
-
     useEffect(() => {
-        axios.get(`${baseURL}/matches`)
+        axios.get('http://localhost:4000/api/matches')
             .then((data) => {
                 setMatches(data.data);
             })
@@ -42,14 +31,17 @@ export default function Matches() {
     try {
          renderedMatches = matches.map(match => (
             <Match
-                key={match.id}
+                key={match._id}
                 date={match.date.slice(0, 10)}
                 time={match.date.slice(11, 16)}
                 status={match.status}
-                teams={match.teams}
+                teamA={match.teamA}
+                teamB={match.teamB}
             />
         ))
-    } catch (error) {}
+    } catch (err) {
+        console.error(err)
+    }
 
     return (
         <>

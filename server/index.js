@@ -3,7 +3,6 @@ import corsMiddleware from "./cors/index.js";
 import cors from "cors";
 import { connectDatabase } from "./connection.js";
 import {userRouter} from "./routes/user.route.js"
-import {teamRouter} from "./routes/team.route.js";
 import {matchRouter} from "./routes/match.route.js";
 const app = express();
 
@@ -17,7 +16,6 @@ app.use(express.urlencoded({extended: "false"}));
 
 //routes
 app.use("/api/users", userRouter);
-app.use("/api/teams", teamRouter);
 app.use("/api/matches", matchRouter);
 
 app.get('/', (req, res) => {
