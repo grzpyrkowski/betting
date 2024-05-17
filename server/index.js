@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectDatabase } from "./connection.js";
 import {userRouter} from "./routes/user.route.js"
 import {matchRouter} from "./routes/match.route.js";
+import {betRouter} from "./routes/bet.route.js";
 const app = express();
 
 //middleware
@@ -17,6 +18,7 @@ app.use(express.urlencoded({extended: "false"}));
 //routes
 app.use("/api/users", userRouter);
 app.use("/api/matches", matchRouter);
+app.use("/api/bets", betRouter);
 
 app.get('/', (req, res) => {
     res.send("siema nara");

@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const Match = (props) => {
     return (
-        <button className="bg-slate-400 p-10 rounded-xl flex">
-            <div className="w-3/4 flex">
-                <div>{props.teamA}</div>
-                <div>{props.teamB}</div>
+        <Link to={`/matches/${props.id}/bet`} className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
+            <div>
+                <div>{props.teamA} - {props.teamB}</div>
             </div>
-            <div className="mr-10">
+            <div className="mr-10 ">
                 <p>{props.date}, {props.time}</p>
+            </div>
+            <div>
                 <p>{props.status}</p>
             </div>
-        </button>
+        </Link>
     )
 }
 
 export default function Matches() {
-    const [matches, setMatches] = useState([""])
+    const [matches, setMatches] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/matches')
@@ -26,10 +28,47 @@ export default function Matches() {
             })
     }, []);
 
-    let renderedMatches = null;
+    let upcomingMatches, pendingMatches, finishedMatches = null;
 
     try {
-         renderedMatches = matches.map(match => (
+         upcomingMatches = matches
+             .filter(match => match.status === "not started")
+             .map(match => (
+                <Match
+                    key={match._id}
+                    id={match._id}
+                    date={match.date.slice(0, 10)}
+                    time={match.date.slice(11, 16)}
+                    status={match.status}
+                    teamA={match.teamA}
+                    teamB={match.teamB}
+                />
+        ))
+    } catch (err) {
+        console.error(err)
+    }
+
+    try {
+        pendingMatches = matches
+            .filter(match => match.status === "pending")
+            .map(match => (
+            <Match
+                key={match._id}
+                date={match.date.slice(0, 10)}
+                time={match.date.slice(11, 16)}
+                status={match.status}
+                teamA={match.teamA}
+                teamB={match.teamB}
+            />
+        ))
+    } catch (err) {
+        console.error(err)
+    }
+
+    try {
+        finishedMatches = matches
+            .filter(match => match.status === "finished")
+            .map(match => (
             <Match
                 key={match._id}
                 date={match.date.slice(0, 10)}
@@ -46,11 +85,22 @@ export default function Matches() {
     return (
         <>
             <div className="text-center my-10">
-                <h1 className="text-">Let's bet!</h1>
-                <h5>If currently available, below you can find some matches to bet</h5>
+                <h1>Upcoming matches</h1>
             </div>
-            <div id="matches">
-                {renderedMatches}
+            <div>
+                {upcomingMatches}
+            </div>
+            <div className="text-center my-10">
+                <h1>Pending matches</h1>
+            </div>
+            <div>
+                {pendingMatches}
+            </div>
+            <div className="text-center my-10">
+                <h1>Finished matches</h1>
+            </div>
+            <div>
+                {finishedMatches}
             </div>
         </>
     )

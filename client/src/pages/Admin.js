@@ -1,16 +1,13 @@
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function Admin( {user} ) {
-    const { } = useKindeAuth();
-
+export default function Admin() {
     const [match, setMatch] = useState({
         date: '',
         teamA: '',
         teamB: '',
         status: ''
-    })
+    });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -25,8 +22,8 @@ export default function Admin( {user} ) {
                 teamA: match.teamA,
                 teamB: match.teamB,
                 status: "not started"
-            });
-        } 
+            })
+        }
         catch (err) {
             console.error(err)
         }
@@ -35,8 +32,7 @@ export default function Admin( {user} ) {
     return (
         <div>
             <div>
-                <h1>Add match</h1>
-                <form onSubmit={handleSubmit}>
+                <form className="add-match" onSubmit={handleSubmit}>
                     <p>Team A:</p>
                     <input 
                         type="text"
@@ -53,19 +49,18 @@ export default function Admin( {user} ) {
                         value={match.teamB}
                         onChange={handleChange}
                     />
-                    <p>Date:</p>
+                    <p>Date: (set +2 hours cause of timezone)</p>
                     <input 
-                        type="date"
+                        type="datetime-local"
                         id="date"
                         name="date"
                         value={match.date}
                         onChange={handleChange}
                     />
+                    <br />
                     <button type="submit">Add match</button>
                 </form>
             </div>
-
-
         </div>
     )
 }

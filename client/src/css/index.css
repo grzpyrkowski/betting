@@ -10,4 +10,8 @@
         text-transform: uppercase;
         padding: 0.75rem;
     }
+
+    .add-match input {
+        color: black;
+    }
 }

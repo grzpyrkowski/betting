@@ -1,6 +1,4 @@
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
-import {useState} from "react";
 import './css/App.css';
 import Layout from "./pages/Layout";
 import LandingPage from "./pages/LandingPage";
@@ -9,6 +7,7 @@ import UserProfile from "./pages/UserProfile";
 import Admin from "./pages/Admin";
 import PrivateRoute from "./routes/PrivateRoute";
 import AuthenticatedRoute from "./routes/AuthenticatedRoute";
+import Bet from "./pages/Bet";
 
 export default function App() {
 
@@ -19,6 +18,7 @@ export default function App() {
                 <Route path="/matches" element={<Matches />} />
                 <Route element={<AuthenticatedRoute />} >
                     <Route path="/profile" element={<UserProfile />} />
+                    <Route path="/matches/:id/bet" element={<Bet />} />
                     <Route element={<PrivateRoute />} >
                         <Route path="/admin" element={<Admin />} />
                     </Route>
