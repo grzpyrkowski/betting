@@ -30,4 +30,3 @@ const BetSchema = new mongoose.Schema(
 )
 
 export const Bet = mongoose.model("Bet", BetSchema);
-

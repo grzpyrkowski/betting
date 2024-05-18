@@ -6,11 +6,6 @@ const PointsSchema = new mongoose.Schema(
           type: Number,
             required: true
         },
-        bet_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Bet",
-            required: true
-        },
         user_id: {
             type: String,
             required: true
@@ -21,5 +16,4 @@ const PointsSchema = new mongoose.Schema(
     }
 )
 
-export const Points = mongoose.model("Bet", PointsSchema);
-
+export const Points = mongoose.model("Points", PointsSchema);

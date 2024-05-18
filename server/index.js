@@ -5,6 +5,7 @@ import { connectDatabase } from "./connection.js";
 import {userRouter} from "./routes/user.route.js"
 import {matchRouter} from "./routes/match.route.js";
 import {betRouter} from "./routes/bet.route.js";
+import {pointsRouter} from "./routes/points.route.js";
 const app = express();
 
 //middleware
@@ -19,6 +20,7 @@ app.use(express.urlencoded({extended: "false"}));
 app.use("/api/users", userRouter);
 app.use("/api/matches", matchRouter);
 app.use("/api/bets", betRouter);
+app.use("/api/points", pointsRouter);
 
 app.get('/', (req, res) => {
     res.send("siema nara");

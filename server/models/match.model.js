@@ -25,4 +25,3 @@ const MatchSchema = new mongoose.Schema(
 )
 
 export const Match = mongoose.model("Match", MatchSchema);
-

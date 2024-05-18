@@ -4,17 +4,34 @@ import {Link} from "react-router-dom";
 
 const Match = (props) => {
     return (
-        <Link to={`/matches/${props.id}/bet`} className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
-            <div>
-                <div>{props.teamA} - {props.teamB}</div>
-            </div>
-            <div className="mr-10 ">
-                <p>{props.date}, {props.time}</p>
-            </div>
-            <div>
-                <p>{props.status}</p>
-            </div>
-        </Link>
+        <>
+        {
+            (!props.disabled) ?
+                <Link to={`/matches/${props.id}/bet`} className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
+                    <div>
+                        <div>{props.teamA} - {props.teamB}</div>
+                    </div>
+                    <div className="mr-10 ">
+                        <p>{props.date}, {props.time}</p>
+                    </div>
+                    <div>
+                        <p>{props.status}</p>
+                    </div>
+                </Link>
+                :
+                <div className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
+                    <div>
+                        <div>{props.teamA} - {props.teamB}</div>
+                    </div>
+                    <div className="mr-10 ">
+                        <p>{props.date}, {props.time}</p>
+                    </div>
+                    <div>
+                        <p>{props.status}</p>
+                    </div>
+                </div>
+        }
+        </>
     )
 }
 
@@ -59,6 +76,7 @@ export default function Matches() {
                 status={match.status}
                 teamA={match.teamA}
                 teamB={match.teamB}
+                disabled={true}
             />
         ))
     } catch (err) {
@@ -76,6 +94,7 @@ export default function Matches() {
                 status={match.status}
                 teamA={match.teamA}
                 teamB={match.teamB}
+                disabled={true}
             />
         ))
     } catch (err) {
