@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "state": "node schedules/changeStateOfMatchToPending.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
     "express": "^4.18.3",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.3.0"
+    "mongoose": "^8.3.0",
+    "node-schedule": "^2.1.1"
   },
   "type": "module"
 }

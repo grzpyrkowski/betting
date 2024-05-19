@@ -27,34 +27,35 @@ export default function UserProfile() {
         return <p>Loading</p>;
     }
 
-    let usersPoints, usersBets = null;
+    let usersBets = bets.filter(bet => bet.user_id === user.id);
+    let usersPoints = points.filter(point => point.user_id === user.id);
 
     try {
-        if (points) {
-            usersPoints = points
-                .filter(point => point.user_id === user.id)
-                .map(point => (
-                    <span key={point.id}>
-                        {point.amount}
-                    </span>
-                ))
+        if (usersPoints.length === 0) {
+            usersPoints = "no points. You'll get first 50 after first bet!"
+        } else {
+            usersPoints.map(point => (
+                <span key={point.id}>
+                {point.amount} points.
+            </span>
+            ));
         }
     } catch (err) {
         console.error(err)
     }
 
     try {
-        if (bets) {
-            usersBets = bets
-                .filter(bet => bet.user_id === user.id)
-                .map(bet => (
-                    <div key={bet.id}>
-                        <p>{bet.scoreA}</p>
-                        <p>{bet.scoreB}</p>
-                        <p>{bet.points_value}</p>
-                        <p>{bet.match_id}</p>
-                    </div>
-                ))
+        if (usersBets.length === 0) {
+            usersBets = "You have no bets yet!";
+        } else {
+            usersBets.map(bet => (
+                <div key={bet.id}>
+                    <p>{bet.scoreA}</p>
+                    <p>{bet.scoreB}</p>
+                    <p>{bet.points_value}</p>
+                    <p>{bet.match_id}</p>
+                </div>
+            ))
         }
     } catch (err) {
         console.error(err)
@@ -67,7 +68,7 @@ export default function UserProfile() {
             {
                 isAuthenticated ?
                     <div>
-                        <h2>Hello, {username[0]}, currently you have {usersPoints} points.</h2>
+                        <h2>Hello, {username[0]}, currently you have {usersPoints} </h2>
                         <div>
                             <p>Your bets:</p>
                             {usersBets}

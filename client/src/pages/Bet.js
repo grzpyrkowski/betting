@@ -37,7 +37,6 @@ export default function Bet() {
     }, [id, user.id]);
 
     checkIfAlreadyBet();
-    console.log({bets})
 
     const handleChange = (event) => {
         const { name, value } = event.target;
