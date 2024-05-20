@@ -6,6 +6,7 @@ import {userRouter} from "./routes/user.route.js"
 import {matchRouter} from "./routes/match.route.js";
 import {betRouter} from "./routes/bet.route.js";
 import {pointsRouter} from "./routes/points.route.js";
+import {changeStateToPendingIfMatchStarted} from "./schedules/changeStateToPendingIfMatchStarted.js";
 const app = express();
 
 //middleware
@@ -22,12 +23,9 @@ app.use("/api/matches", matchRouter);
 app.use("/api/bets", betRouter);
 app.use("/api/points", pointsRouter);
 
-app.get('/', (req, res) => {
-    res.send("siema nara");
-});
-
 connectDatabase().then(() => {
     app.listen(4000, () => {
         console.log("Server started!")
     })
+    changeStateToPendingIfMatchStarted();
 });

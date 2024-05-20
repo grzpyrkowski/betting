@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function Admin() {
@@ -8,13 +8,30 @@ export default function Admin() {
         teamB: '',
         status: ''
     });
+    const [bets, setBets] = useState([])
 
-    const handleChange = (event) => {
+    useEffect(() => {
+        axios.get('http://localhost:4000/api/bets')
+            .then(data => {
+                setBets(data.data);
+            });
+        axios.get('http://localhost:4000/api/points')
+            .then(data => {
+                setBets(data.data);
+            });
+        }, []);
+
+    const handleMatchFormChange = (event) => {
         const { name, value } = event.target;
         setMatch((prevState) => ({ ...prevState, [name]: value }));
-    };
+    }
 
-    function handleSubmit(event) {
+    const handleBetComparatorChange = (event) => {
+        const { name, value } = event.target;
+        setMatch((prevState) => ({ ...prevState, [name]: value }));
+    }
+
+    function addMatchSubmit(event) {
         event.preventDefault();
         try {
             axios.post('http://localhost:4000/api/matches', {
@@ -29,17 +46,32 @@ export default function Admin() {
         }
     }
 
+    function comparePointsSubmit(event) {
+        event.preventDefault();
+        try {
+            axios.put('http://localhost:4000/api/points', {
+                date: match.date,
+                teamA: match.teamA,
+                teamB: match.teamB,
+                status: "not started"
+            })
+        }
+        catch (err) {
+            console.error(err)
+        }
+    }
+
     return (
-        <div>
+        <div className="mt-10 flex place-content-between">
             <div>
-                <form className="add-match" onSubmit={handleSubmit}>
+                <form className="add-match" onSubmit={addMatchSubmit}>
                     <p>Team A:</p>
                     <input 
                         type="text"
                         id="teamA"
                         name="teamA"
                         value={match.teamA}
-                        onChange={handleChange}
+                        onChange={handleMatchFormChange}
                     />
                     <p>Team B:</p>
                     <input 
@@ -47,7 +79,7 @@ export default function Admin() {
                         id="teamB"
                         name="teamB"
                         value={match.teamB}
-                        onChange={handleChange}
+                        onChange={handleMatchFormChange}
                     />
                     <p>Date: (set +2 hours cause of timezone)</p>
                     <input 
@@ -55,7 +87,29 @@ export default function Admin() {
                         id="date"
                         name="date"
                         value={match.date}
-                        onChange={handleChange}
+                        onChange={handleMatchFormChange}
+                    />
+                    <br />
+                    <button type="submit">Add match</button>
+                </form>
+            </div>
+            <div>
+                <form className="add-match" onSubmit={comparePointsSubmit}>
+                    <p>Team A:</p>
+                    <input
+                        type="text"
+                        id="teamA"
+                        name="teamA"
+                        value={match.teamA}
+                        onChange={handleBetComparatorChange}
+                    />
+                    <p>Team B:</p>
+                    <input
+                        type="text"
+                        id="teamB"
+                        name="teamB"
+                        value={match.teamB}
+                        onChange={handleBetComparatorChange}
                     />
                     <br />
                     <button type="submit">Add match</button>
