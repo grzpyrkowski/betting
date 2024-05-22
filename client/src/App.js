@@ -8,6 +8,7 @@ import Admin from "./pages/Admin";
 import PrivateRoute from "./routes/PrivateRoute";
 import AuthenticatedRoute from "./routes/AuthenticatedRoute";
 import Bet from "./pages/Bet";
+import Score from "./pages/Score";
 
 export default function App() {
 
@@ -21,6 +22,7 @@ export default function App() {
                     <Route path="/matches/:id/bet" element={<Bet />} />
                     <Route element={<PrivateRoute />} >
                         <Route path="/admin" element={<Admin />} />
+                        <Route path="/matches/:id/score" element={<Score />} />
                     </Route>
                 </Route>
             </Route>

@@ -1,42 +1,49 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-
-const Match = (props) => {
-    return (
-        <>
-        {
-            (!props.disabled) ?
-                <Link to={`/matches/${props.id}/bet`} className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
-                    <div>
-                        <div>{props.teamA} - {props.teamB}</div>
-                    </div>
-                    <div className="mr-10 ">
-                        <p>{props.date}, {props.time}</p>
-                    </div>
-                    <div>
-                        <p>{props.status}</p>
-                    </div>
-                </Link>
-                :
-                <div className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
-                    <div>
-                        <div>{props.teamA} - {props.teamB}</div>
-                    </div>
-                    <div className="mr-10 ">
-                        <p>{props.date}, {props.time}</p>
-                    </div>
-                    <div>
-                        <p>{props.status}</p>
-                    </div>
-                </div>
-        }
-        </>
-    )
-}
+import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 
 export default function Matches() {
     const [matches, setMatches] = useState([])
+    const { getPermissions } = useKindeAuth();
+
+    const Match = (props) => {
+        return (
+            <>
+                {
+                    (!props.disabled) ?
+                        <Link to={`/matches/${props.id}/bet`} className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
+                            <div>
+                                <div>{props.teamA} - {props.teamB}</div>
+                            </div>
+                            <div className="mr-10 ">
+                                <p>{props.date}, {props.time}</p>
+                            </div>
+                            <div>
+                                <p>{props.status}</p>
+                            </div>
+                        </Link>
+                        :
+                        <div className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
+                            <div>
+                                <div>{props.teamA} - {props.teamB}</div>
+                            </div>
+                            <div className="mr-10 ">
+                                <p>{props.date}, {props.time}</p>
+                            </div>
+                            <div>
+                                <p>{props.status}</p>
+                            </div>
+                            {
+                                getPermissions().orgCode === "org_5f796b31434" ?
+                                    <Link to={`/matches/${props.id}/score`}><button>Add score</button></Link>
+                                    : <></>
+                            }
+                        </div>
+                }
+            </>
+        )
+    }
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/matches')
@@ -71,6 +78,7 @@ export default function Matches() {
             .map(match => (
             <Match
                 key={match._id}
+                id={match._id}
                 date={match.date.slice(0, 10)}
                 time={match.date.slice(11, 16)}
                 status={match.status}

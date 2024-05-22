@@ -25,7 +25,7 @@ app.use("/api/points", pointsRouter);
 
 connectDatabase().then(() => {
     app.listen(4000, () => {
-        console.log("Server started!")
+        console.log("Server started!");
+        changeStateToPendingIfMatchStarted();
     })
-    changeStateToPendingIfMatchStarted();
 });

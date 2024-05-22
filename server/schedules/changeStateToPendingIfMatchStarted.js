@@ -12,6 +12,8 @@ export function changeStateToPendingIfMatchStarted() {
                 .updateMany({status: "not started", date: {$lt: new Date()}}, {$set: {status: "pending"}});
         } catch (err) {
             console.log(err);
+        } finally {
+            console.log("update done")
         }
     });
 }

@@ -8,10 +8,36 @@ export default function UserProfile() {
     const [bets, setBets] = useState([])
     const [matches, setMatches] = useState([])
 
+    const Bet = (props) => {
+        return (
+            <>
+                {
+                    (bets.length !== 0) ?
+                            <div>
+                                <p>{props.scoreA}</p>
+                                <p>{props.scoreB}</p>
+                                <p>{props.points_value}</p>
+                                {
+                                    matches
+                                        .filter(match => match._id === props.match_id)
+                                        .map(match => (
+                                            <div key={match.id}>
+                                                <div>{match.teamA} - {match.teamB}</div>
+                                            </div>
+                                        ))
+                                }
+                            </div>
+                        :
+                        <div> You have no bets yet! </div>
+                }
+            </>
+        )
+    }
+
     useEffect(() => {
         axios.get(`http://localhost:4000/api/points`)
             .then((data) => {
-                setPoints(data.data)
+                setPoints(data.data);
             });
         axios.get(`http://localhost:4000/api/bets`)
             .then((data) => {
@@ -21,42 +47,39 @@ export default function UserProfile() {
             .then((data) => {
                 setMatches(data.data);
             });
-    }, []);
+    }, [user.id]);
 
     if (isLoading) {
         return <p>Loading</p>;
     }
 
-    let usersBets = bets.filter(bet => bet.user_id === user.id);
-    let usersPoints = points.filter(point => point.user_id === user.id);
+    let usersBets, usersPoints = null;
 
     try {
-        if (usersPoints.length === 0) {
-            usersPoints = "no points. You'll get first 50 after first bet!"
-        } else {
-            usersPoints.map(point => (
-                <span key={point.id}>
-                {point.amount} points.
-            </span>
-            ));
-        }
+        usersBets = bets
+            .filter(bet => bet.user_id === user.id)
+            .map(bet => (
+                <Bet
+                    key={bet._id}
+                    scoreA={bet.scoreA}
+                    scoreB={bet.scoreB}
+                    match_id={bet.match_id}
+                />
+            ))
     } catch (err) {
         console.error(err)
     }
 
     try {
-        if (usersBets.length === 0) {
-            usersBets = "You have no bets yet!";
-        } else {
-            usersBets.map(bet => (
-                <div key={bet.id}>
-                    <p>{bet.scoreA}</p>
-                    <p>{bet.scoreB}</p>
-                    <p>{bet.points_value}</p>
-                    <p>{bet.match_id}</p>
-                </div>
-            ))
-        }
+        usersPoints = points
+            .filter(point => point.user_id === user.id)
+            .map(point => {
+                if (Number.isInteger(point.amount)) {
+                    return point.amount
+                } else {
+                    return 0
+                }
+            })
     } catch (err) {
         console.error(err)
     }
@@ -68,7 +91,7 @@ export default function UserProfile() {
             {
                 isAuthenticated ?
                     <div>
-                        <h2>Hello, {username[0]}, currently you have {usersPoints} </h2>
+                        <h2>Hello {username[0]} currently you have {usersPoints} points.</h2>
                         <div>
                             <p>Your bets:</p>
                             {usersBets}
