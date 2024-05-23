@@ -18,8 +18,6 @@ export async function connectDatabase() {
             });
     } catch (e) {
         console.error(e);
-    } finally {
-        // await client.close();
     }
 }
 

@@ -11,14 +11,14 @@ export default function LandingPage() {
                       className="m-auto uppercase max-sm:text-xs bg-slate-700 p-1.5 md:p-3 rounded-2xl border-amber-100 border-2">
                     {props.value}
                 </Link>
-            )
+            );
         } else {
             return (
                 <button
                       className="m-auto uppercase max-sm:text-xs bg-slate-700 p-1.5 md:p-3 rounded-2xl border-amber-100 border-2">
                     {props.value}
                 </button>
-            )
+            );
         }
     }
 
@@ -27,7 +27,7 @@ export default function LandingPage() {
             <div className="my-3 mx-0.5 flex bg-slate-600 p-5 shadow-slate-500 shadow-fullShadow-3">
                 <span className="text-center left-0 right-0 mx-auto">{props.content}</span>
             </div>
-        )
+        );
     }
 
     const scrollDown = () => {
@@ -62,5 +62,5 @@ export default function LandingPage() {
                 <InfoPanel content="Check scores and compare to another players!"/>
             </div>
         </>
-    )
+    );
 }

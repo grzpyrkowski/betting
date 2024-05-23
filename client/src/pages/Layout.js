@@ -16,13 +16,13 @@ export default function Layout() {
                         {props.value}
                     </span>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className="my-5 lg:my-8 xl:my-10 xxl:my-14 4k:my-20">
                     <p className="p-auto">{props.value}</p>
                 </div>
-            )
+            );
         }
     }
 
@@ -71,5 +71,5 @@ export default function Layout() {
                 </div>
             </footer>
         </>
-    )
+    );
 }

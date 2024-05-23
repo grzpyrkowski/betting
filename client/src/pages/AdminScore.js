@@ -1,8 +1,9 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {baseUrl} from "../data/globalConsts";
 
-export default function Score() {
+export default function AdminScore() {
     const navigate = useNavigate();
     let { id } = useParams();
     const [bets, setBets] = useState([]);
@@ -13,11 +14,11 @@ export default function Score() {
     });
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/bets')
+        axios.get(`${baseUrl}api/bets`)
             .then((data) => {
                 setBets(data.data);
             });
-        axios.get('http://localhost:4000/api/points')
+        axios.get(`${baseUrl}api/points`)
             .then((data) => {
                 setPoints(data.data);
             });
@@ -36,7 +37,7 @@ export default function Score() {
                     if (point.user_id === bet.user_id) {
                         if (bet.scoreA == score.correct_scoreA && bet.scoreB == score.correct_scoreB) {
                             try {
-                                axios.put(`http://localhost:4000/api/points/${point._id}`, {
+                                axios.put(`${baseUrl}api/points/${point._id}`, {
                                     amount: point.amount + Math.round(bet.points_value * 2.5)
                                 })
                             } catch (err) {
@@ -46,7 +47,7 @@ export default function Score() {
                             (bet.scoreA === bet.scoreB && score.correct_scoreA === score.correct_scoreB) ||
                             (bet.scoreA < bet.scoreB && score.correct_scoreA < score.correct_scoreB)) {
                             try {
-                                axios.put(`http://localhost:4000/api/points/${point._id}`, {
+                                axios.put(`${baseUrl}api/points/${point._id}`, {
                                     amount: point.amount + Math.round(bet.points_value * 1.5)
                                 })
                             } catch (err) {
@@ -58,9 +59,9 @@ export default function Score() {
             }
         });
         try {
-            axios.put(`http://localhost:4000/api/matches/${id}`, {
+            axios.put(`${baseUrl}api/matches/${id}`, {
                 status: "finished"
-            })
+            });
         } catch (err) {
             console.error(err)
         }
@@ -90,5 +91,5 @@ export default function Score() {
                 <button type="submit">Add score</button>
             </form>
         </div>
-    )
+    );
 }

@@ -1,12 +1,16 @@
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {baseUrl} from "../data/globalConsts";
 
 export default function UserProfile() {
     const { user, isAuthenticated, isLoading } = useKindeAuth();
-    const [points, setPoints] = useState([])
-    const [bets, setBets] = useState([])
-    const [matches, setMatches] = useState([])
+    const [points, setPoints] = useState([]);
+    const [bets, setBets] = useState([]);
+    const [matches, setMatches] = useState([]);
+
+    const username = user.email.split('@');
+    let usersBets, usersPoints = null;
 
     const Bet = (props) => {
         return (
@@ -31,19 +35,19 @@ export default function UserProfile() {
                         <div> You have no bets yet! </div>
                 }
             </>
-        )
+        );
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/points`)
+        axios.get(`${baseUrl}api/points`)
             .then((data) => {
                 setPoints(data.data);
             });
-        axios.get(`http://localhost:4000/api/bets`)
+        axios.get(`${baseUrl}api/bets`)
             .then((data) => {
                 setBets(data.data);
             });
-        axios.get(`http://localhost:4000/api/matches`)
+        axios.get(`${baseUrl}api/matches`)
             .then((data) => {
                 setMatches(data.data);
             });
@@ -52,8 +56,6 @@ export default function UserProfile() {
     if (isLoading) {
         return <p>Loading</p>;
     }
-
-    let usersBets, usersPoints = null;
 
     try {
         usersBets = bets
@@ -67,7 +69,7 @@ export default function UserProfile() {
                 />
             ))
     } catch (err) {
-        console.error(err)
+        console.error(err);
     }
 
     try {
@@ -81,10 +83,8 @@ export default function UserProfile() {
                 }
             })
     } catch (err) {
-        console.error(err)
+        console.error(err);
     }
-
-    const username = user.email.split('@');
 
     return (
         <div>

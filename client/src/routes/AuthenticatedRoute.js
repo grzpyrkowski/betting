@@ -15,7 +15,7 @@ export default function AuthenticatedRoute() {
                 <div>Not Authenticated, you need to login</div>
                 <button onClick={login}>Login</button>
             </div>
-        )
+        );
     }
 
     if (!isLoading && isAuthenticated) {

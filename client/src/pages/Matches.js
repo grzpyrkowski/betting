@@ -2,10 +2,13 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
+import {baseUrl} from "../data/globalConsts";
 
 export default function Matches() {
     const [matches, setMatches] = useState([])
-    const { getPermissions } = useKindeAuth();
+    const { isAuthenticated, getPermissions } = useKindeAuth();
+
+    let upcomingMatches, pendingMatches, finishedMatches = null;
 
     const Match = (props) => {
         return (
@@ -34,25 +37,31 @@ export default function Matches() {
                             <div>
                                 <p>{props.status}</p>
                             </div>
-                            {
-                                getPermissions().orgCode === "org_5f796b31434" ?
-                                    <Link to={`/matches/${props.id}/score`}><button>Add score</button></Link>
-                                    : <></>
+                            <div>
+                            { isAuthenticated ?
+                                <div>
+                                    {
+                                        getPermissions().orgCode === "org_5f796b31434" ?
+                                            <Link to={`/matches/${props.id}/score`}><button>Add score</button></Link>
+                                            : <></>
+                                    }
+                                </div>
+                                : <></>
                             }
+                            </div>
                         </div>
                 }
             </>
-        )
+        );
     }
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/matches')
+        axios.get(`${baseUrl}api/matches`)
             .then((data) => {
                 setMatches(data.data);
-            })
+            });
     }, []);
 
-    let upcomingMatches, pendingMatches, finishedMatches = null;
 
     try {
          upcomingMatches = matches
@@ -67,9 +76,9 @@ export default function Matches() {
                     teamA={match.teamA}
                     teamB={match.teamB}
                 />
-        ))
+        ));
     } catch (err) {
-        console.error(err)
+        console.error(err);
     }
 
     try {
@@ -86,7 +95,7 @@ export default function Matches() {
                 teamB={match.teamB}
                 disabled={true}
             />
-        ))
+        ));
     } catch (err) {
         console.error(err)
     }

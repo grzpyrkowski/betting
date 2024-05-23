@@ -1,5 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
+import {baseUrl} from "../data/globalConsts";
 
 export default function Admin() {
     const [match, setMatch] = useState({
@@ -17,15 +18,15 @@ export default function Admin() {
     function addMatchSubmit(event) {
         event.preventDefault();
         try {
-            axios.post('http://localhost:4000/api/matches', {
+            axios.post(`${baseUrl}api/matches`, {
                 date: match.date,
                 teamA: match.teamA,
                 teamB: match.teamB,
                 status: "not started"
-            })
+            });
         }
         catch (err) {
-            console.error(err)
+            console.error(err);
         }
     }
 
@@ -62,5 +63,5 @@ export default function Admin() {
                 </form>
             </div>
         </div>
-    )
+    );
 }
