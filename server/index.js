@@ -29,10 +29,10 @@ app.get('/*', (req, res) => {
     res.sendFile('index.html', {root: buildPath});
 })
 
-connectDatabase().then(() => {
-    app.listen(8080, () => {
-        console.log("Server started!");
-        changeStateToPendingIfMatchStarted();
-        addDailyPoints();
-    })
-});
+// connectDatabase().then(() => {
+//     app.listen(8080, () => {
+//         console.log("Server started!");
+//         changeStateToPendingIfMatchStarted();
+//         addDailyPoints();
+//     })
+// });
