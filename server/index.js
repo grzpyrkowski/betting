@@ -30,7 +30,7 @@ app.get('/*', (req, res) => {
 })
 
 connectDatabase().then(() => {
-    app.listen(4000, () => {
+    app.listen(8080, () => {
         console.log("Server started!");
         changeStateToPendingIfMatchStarted();
         addDailyPoints();
