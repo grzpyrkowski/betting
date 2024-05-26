@@ -4,6 +4,9 @@ import {betRouter} from "./routes/bet.route.js";
 import {pointsRouter} from "./routes/points.route.js";
 import * as path from "node:path";
 import { fileURLToPath } from 'url';
+import {connectDatabase} from "./connection.js";
+import {changeStateToPendingIfMatchStarted} from "./schedules/changeStateToPendingIfMatchStarted.js";
+import {addDailyPoints} from "./schedules/addDailyPoints.js";
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -27,10 +30,10 @@ app.get('/*', (req, res) => {
     res.sendFile('index.html', {root: buildPath});
 })
 
-// connectDatabase().then(() => {
+connectDatabase().then(() => {
     app.listen(port, () => {
         console.log("Server started!");
-        // changeStateToPendingIfMatchStarted();
-        // addDailyPoints();
+        changeStateToPendingIfMatchStarted();
+        addDailyPoints();
     });
-// });
+});
