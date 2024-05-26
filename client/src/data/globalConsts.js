@@ -1,1 +1,1 @@
-export const baseUrl = "https://bettingeuro.azurewebsites.net"
+export const baseUrl = "https://bettingeuro.azurewebsites.net/"
