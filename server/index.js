@@ -2,9 +2,10 @@ import express from "express";
 import {matchRouter} from "./routes/match.route.js";
 import {betRouter} from "./routes/bet.route.js";
 import {pointsRouter} from "./routes/points.route.js";
-const app = express();
 import * as path from "node:path";
 import { fileURLToPath } from 'url';
+const app = express();
+const port = process.env.PORT || 8080;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,9 +28,9 @@ app.get('/*', (req, res) => {
 })
 
 // connectDatabase().then(() => {
-//     app.listen(8080, () => {
-//         console.log("Server started!");
-//         changeStateToPendingIfMatchStarted();
-//         addDailyPoints();
-//     })
+    app.listen(port, () => {
+        console.log("Server started!");
+        // changeStateToPendingIfMatchStarted();
+        // addDailyPoints();
+    });
 // });
