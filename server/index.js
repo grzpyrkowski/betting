@@ -1,10 +1,7 @@
 import express from "express";
-import { connectDatabase } from "./connection.js";
 import {matchRouter} from "./routes/match.route.js";
 import {betRouter} from "./routes/bet.route.js";
 import {pointsRouter} from "./routes/points.route.js";
-import {changeStateToPendingIfMatchStarted} from "./schedules/changeStateToPendingIfMatchStarted.js";
-import {addDailyPoints} from "./schedules/addDailyPoints.js";
 const app = express();
 import * as path from "node:path";
 import { fileURLToPath } from 'url';
