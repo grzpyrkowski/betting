@@ -1,6 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
-import {baseUrl} from "../data/globalConsts";
+import {baseUrl} from "../globalConsts";
 
 export default function Admin() {
     const [match, setMatch] = useState({

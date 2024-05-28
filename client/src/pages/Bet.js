@@ -2,7 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
-import {baseUrl} from "../data/globalConsts";
+import {baseUrl} from "../globalConsts";
 
 export default function Bet() {
     const [match, setMatch] = useState('');

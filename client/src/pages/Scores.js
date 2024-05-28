@@ -1,80 +1,75 @@
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import React, {useEffect, useState} from "react";
-import {baseUrl} from "../data/globalConsts";
+import {baseUrl} from "../globalConsts";
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 
 Chart.register(CategoryScale);
+Chart.defaults.font.size = 20;
 
 export default function Scores() {
-    const {user} = useKindeAuth();
-    console.log(user);
-    const [labels, setLabels] = useState([]);
-    const [amounts, setAmounts] = useState([]);
     const [users, setUsers] = useState([]);
-    const [chartData, setChartData] = useState({
-        labels: [],
-        datasets: [
-            {
-                label: "Points: ",
-                data: [],
-                backgroundColor: [
-                    "rgba(75,192,192,1)"
-                ],
-                borderColor: "black",
-                borderWidth: 2
-            }
-        ]
-    });
+    const [points, setPoints] = useState([]);
+    const sortedPoints = points;
+    const sortedUsers = [];
 
     useEffect(() => {
-        // try {
-        //     axios.get(`${baseUrl}api/points`)
-        //         .then(data => {
-        //             setLabels(data.data.map(label => label.user_id));
-        //             setAmounts(data.data.map(label => label.amount));
-        //         });
-        // } catch (err) {
-        //     console.log(err);
-        // } finally {
-        //     setChartData({
-        //         labels: labels,
-        //         datasets: [
-        //             {
-        //                 label: "Points: ",
-        //                 data: amounts,
-        //                 backgroundColor: [
-        //                     "rgba(75,192,192,1)"
-        //                 ],
-        //                 borderColor: "black",
-        //                 borderWidth: 2
-        //             }
-        //         ]
-        //     });
-        // }
-        axios.get('https://euro2024.kinde.com/api/v1/users',
-            {
-                headers: {
-                    'Accept':'application/json',
-                    'Authorization':'Bearer {access-token}'
-                }
-            })
-            .then(function(res) {
-                return res.json();
-            }).then(function(body) {
-            console.log(body);
-        });
+        try {
+            axios.get(`${baseUrl}api/users`)
+                .then(data => {
+                    setUsers(data.data);
+                });
+            axios.get(`${baseUrl}api/points`)
+                .then(data => {
+                    setPoints(data.data);
+                });
+        } catch (err) {
+            console.log(err);
+        }
     }, []);
 
-    console.log(users)
+    function sortPoints() {
+        for (let i = 0; i < sortedPoints.length; i++) {
+            for (let j = 0; j < (sortedPoints.length - i - 1); j++) {
+                if (sortedPoints[j].amount > sortedPoints[j + 1].amount) {
+                    let temp = sortedPoints[j];
+                    sortedPoints[j] = sortedPoints[j + 1];
+                    sortedPoints[j + 1] = temp;
+                }
+            }
+        }
+    }
 
+    function sortUsers() {
+        for (let i = 0; i < sortedPoints.length; i++) {
+            users.forEach(user => {
+                if (user.kinde_user_id === sortedPoints[i].user_id) {
+                    sortedUsers[i] = user;
+                }
+            });
+        }
+    }
+
+    sortPoints();
+    sortUsers();
 
     return (
         <div className="chart-container">
             <h2 className="text-center">Scores</h2>
-            <Bar data={chartData}/>
+            <Bar data={{
+                labels: sortedUsers.map(user => user.username),
+                datasets: [
+                    {
+                        label: "Points",
+                        data: sortedPoints.map(point => point.amount),
+                        backgroundColor: "rgb(75,192,108)",
+                        borderColor: "black",
+                        borderWidth: 1
+                    }
+                ],
+            }}
+            />
         </div>
     );
 }

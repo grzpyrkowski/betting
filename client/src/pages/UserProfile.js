@@ -1,7 +1,7 @@
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {baseUrl} from "../data/globalConsts";
+import {baseUrl} from "../globalConsts";
 
 export default function UserProfile() {
     const { user, isAuthenticated, isLoading } = useKindeAuth();
