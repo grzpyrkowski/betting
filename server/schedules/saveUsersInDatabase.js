@@ -8,7 +8,6 @@ export function saveUsersInDatabase() {
 
     schedule("0 * * * *", async function () {
         try {
-            let users = await client.db("euro").collection("users").find({}).toArray();
             getUsers().then(res => res.users.forEach((user) => {
                 client.db("euro").collection("users")
                     .updateOne({kinde_user_id: user.id}, {$set: {username: user.username, kinde_user_id: user.id}}, {upsert: true});
@@ -20,4 +19,3 @@ export function saveUsersInDatabase() {
         }
     });
 }
-
