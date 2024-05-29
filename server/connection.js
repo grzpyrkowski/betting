@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import 'dotenv/config';
 
 const url = process.env.DATABASE_URL;
 

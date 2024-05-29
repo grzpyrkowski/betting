@@ -2,7 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
-import {baseUrl} from "../data/globalConsts";
+import {baseUrl} from "../globalConsts";
 
 export default function Bet() {
     const [match, setMatch] = useState('');
@@ -43,7 +43,6 @@ export default function Bet() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        checkIfFirstBet();
         points.forEach(point => {
             if (point.user_id === user.id) {
                 if (bet.points_value <= point.amount) {
@@ -71,19 +70,6 @@ export default function Bet() {
                     alert("You don't have that much points to place that bet!");
                 }}
         });
-    }
-
-    function checkIfFirstBet () {
-        if (points.filter((point) => point.user_id === user.id).length === 0) {
-            try {
-                axios.post(`${baseUrl}api/points`, {
-                    amount: 50,
-                    user_id: user.id,
-                });
-            } catch (err) {
-                console.error(err);
-            }
-        }
     }
 
     function checkIfAlreadyBet() {

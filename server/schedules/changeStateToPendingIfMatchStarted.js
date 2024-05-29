@@ -1,8 +1,8 @@
 import  { schedule } from "node-cron"
 import {MongoClient} from "mongodb";
+import 'dotenv/config';
 
 export function changeStateToPendingIfMatchStarted() {
-
     const client = new MongoClient(process.env.DATABASE_URL);
 
     schedule("0 * * * *", async function () {

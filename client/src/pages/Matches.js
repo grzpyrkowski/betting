@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
-import {baseUrl} from "../data/globalConsts";
+import {baseUrl} from "../globalConsts";
 
 export default function Matches() {
     const [matches, setMatches] = useState([])
