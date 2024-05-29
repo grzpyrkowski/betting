@@ -3,3 +3,4 @@
 *.xml
 /secret
 .env
+cors.js
