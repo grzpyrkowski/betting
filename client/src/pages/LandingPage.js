@@ -59,7 +59,7 @@ export default function LandingPage() {
                 <InfoPanel content="Go to 'matches' and bet"/>
                 <img className="w-1/12 mx-auto" src={arrow} alt="down-arrow"/>
 
-                <InfoPanel content="Check scores and compare to another players!"/>
+                <InfoPanel content="Check scores and compare to other players!"/>
             </div>
         </>
     );
