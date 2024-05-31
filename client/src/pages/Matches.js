@@ -12,7 +12,7 @@ export default function Matches() {
 
     const Match = (props) => {
         return (
-            <>
+            <main className="mt-8 mx-auto">
                 {
                     (!props.disabled) ?
                         <Link to={`/matches/${props.id}/bet`} className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
@@ -51,7 +51,7 @@ export default function Matches() {
                             </div>
                         </div>
                 }
-            </>
+            </main>
         );
     }
 

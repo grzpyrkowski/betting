@@ -55,21 +55,23 @@ export default function Scores() {
     sortUsers();
 
     return (
-        <div className="chart-container">
-            <h2 className="text-center">Scores</h2>
-            <Bar data={{
-                labels: sortedUsers.map(user => user.username),
-                datasets: [
-                    {
-                        label: "Points",
-                        data: sortedPoints.map(point => point.amount),
-                        backgroundColor: "rgb(75,192,108)",
-                        borderColor: "black",
-                        borderWidth: 1
-                    }
-                ],
-            }}
-            />
-        </div>
+        <main className="mt-8 mx-auto">
+            <div className="chart-container">
+                <h2 className="text-center">Scores</h2>
+                <Bar data={{
+                    labels: sortedUsers.map(user => user.username),
+                    datasets: [
+                        {
+                            label: "Points",
+                            data: sortedPoints.map(point => point.amount),
+                            backgroundColor: "rgb(75,192,108)",
+                            borderColor: "black",
+                            borderWidth: 1
+                        }
+                    ],
+                }}
+                />
+            </div>
+        </main>
     );
 }

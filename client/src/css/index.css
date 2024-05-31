@@ -3,12 +3,22 @@
 @tailwind utilities;
 @layer base {
     html {
-        @apply bg-slate-700 text-amber-100 font-roboto;
+        @apply text-white text-xl font-roboto;
+        background-color: #10253B;
     }
 
-    header button {
+    header, header a, button {
         text-transform: uppercase;
         padding: 0.75rem;
+        background-color: #10253B;
+    }
+
+    .banner {
+        display: block;
+    }
+
+    main, .header-btns, .footer-btns {
+        width: calc(100vh + 40px);
     }
 
     .add-match input {

@@ -1,1 +1,1 @@
-export const baseUrl = "https://betting-euro2024.onrender.com/"
+export const baseUrl = "http://localhost:8080/"
