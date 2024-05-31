@@ -12,6 +12,7 @@ root.render(
           domain="https://euro2024.kinde.com"
           redirectUri="https://betting-euro2024.onrender.com/profile"
           logoutUri="https://betting-euro2024.onrender.com/"
+          isDangerouslyUseLocalStorage={false}
       >
           <App />
       </KindeProvider>

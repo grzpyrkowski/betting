@@ -50,7 +50,7 @@ export default function Admin() {
                         value={match.teamB}
                         onChange={handleMatchFormChange}
                     />
-                    <p>Date: (set +2 hours cause of timezone)</p>
+                    <p>Date:</p>
                     <input 
                         type="datetime-local"
                         id="date"
