@@ -69,27 +69,32 @@ export default function AdminScore() {
     }
 
     return (
-        <div>
+        <main>
             <form className="add-match" onSubmit={addScoreSubmit}>
-                <p>Team A:</p>
-                <input
-                    type="number"
-                    id="correct_scoreA"
-                    name="correct_scoreA"
-                    value={score.correct_scoreA}
-                    onChange={handleScoreFormChange}
-                />
-                <p>Team B:</p>
-                <input
-                    type="number"
-                    id="correct_scoreB"
-                    name="correct_scoreB"
-                    value={score.correct_scoreB}
-                    onChange={handleScoreFormChange}
-                />
-                <br/>
+                <section className="flex">
+                    <div>
+                        <p>Team A:</p>
+                        <input
+                            type="number"
+                            id="correct_scoreA"
+                            name="correct_scoreA"
+                            value={score.correct_scoreA}
+                            onChange={handleScoreFormChange}
+                        />
+                    </div>
+                    <div className="ml-5">
+                        <p>Team B:</p>
+                        <input
+                            type="number"
+                            id="correct_scoreB"
+                            name="correct_scoreB"
+                            value={score.correct_scoreB}
+                            onChange={handleScoreFormChange}
+                        />
+                    </div>
+                </section>
                 <button type="submit">Add score</button>
             </form>
-        </div>
+        </main>
     );
 }

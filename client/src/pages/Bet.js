@@ -83,43 +83,50 @@ export default function Bet() {
     checkIfAlreadyBet();
 
     return (
-        <div>
+        <main>
             { isAlreadyBet ?
-                <div>You already bet this one!</div>
+                <div className="text-center text-2xl pt-5">You already bet this one!</div>
                 :
                 <form className="add-match" onSubmit={handleSubmit}>
-                    <p>{match.teamA}</p>
-                    <input
-                        type="number"
-                        id="scoreA"
-                        name="scoreA"
-                        min="0"
-                        value={bet.scoreA}
-                        onChange={handleChange}
-                    />
-                    <p>{match.teamB}</p>
-                    <input
-                        type="number"
-                        id="scoreB"
-                        name="scoreB"
-                        min="0"
-                        value={bet.scoreB}
-                        onChange={handleChange}
-                    />
-                    <p>How much points with you wanna bet? (max. 10)</p>
-                    <input
-                        type="number"
-                        id="points_value"
-                        name="points_value"
-                        min="0"
-                        max="10"
-                        value={bet.points_value}
-                        onChange={handleChange}
-                    />
-                    <br/>
-                    <button type="submit">Add bet</button>
+                    <section className="flex">
+                        <div>
+                            <p>{match.teamA}</p>
+                            <input
+                                type="number"
+                                id="scoreA"
+                                name="scoreA"
+                                min="0"
+                                value={bet.scoreA}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="ml-5">
+                            <p>{match.teamB}</p>
+                            <input
+                                type="number"
+                                id="scoreB"
+                                name="scoreB"
+                                min="0"
+                                value={bet.scoreB}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </section>
+                    <section className="mt-3">
+                        <p>How much points with you wanna bet? (max. 10)</p>
+                        <input
+                            type="number"
+                            id="points_value"
+                            name="points_value"
+                            min="0"
+                            max="10"
+                            value={bet.points_value}
+                            onChange={handleChange}
+                        />
+                    </section>
+                    <button className="mt-3" type="submit">Add bet</button>
                 </form>
             }
-        </div>
+        </main>
     );
 }

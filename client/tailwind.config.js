@@ -8,7 +8,6 @@ module.exports = {
       lg: '1024px',
       xl: '1440px',
       xxl: '2000px',
-      '4k': '3000px'
     },
     extend: {
       boxShadow: {
