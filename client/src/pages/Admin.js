@@ -31,8 +31,7 @@ export default function Admin() {
     }
 
     return (
-        <div className="mt-10 flex place-content-between">
-            <div>
+        <main className="mt-10 flex place-content-between">
                 <form className="add-match" onSubmit={addMatchSubmit}>
                     <p>Team A:</p>
                     <input 
@@ -61,7 +60,6 @@ export default function Admin() {
                     <br />
                     <button type="submit">Add match</button>
                 </form>
-            </div>
-        </div>
+        </main>
     );
 }

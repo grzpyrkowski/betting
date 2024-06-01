@@ -16,7 +16,7 @@ export default function LandingPage() {
             <div className="mx-auto flex place-content-center">
                 <img className="banner" src={banner} alt="background-banner"/>
             </div>
-            <main className="mt-8 mx-auto">
+            <main>
                 <div className="font-inter">
                     <InfoPanel content="Create a free account or login if you have one already"/>
                     <img className="mx-auto" src={arrow} alt="down-arrow"/>

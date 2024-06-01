@@ -3,6 +3,7 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import {baseUrl} from "../globalConsts";
+import add from "../data/matches/add.png"
 
 export default function Matches() {
     const [matches, setMatches] = useState([])
@@ -12,46 +13,48 @@ export default function Matches() {
 
     const Match = (props) => {
         return (
-            <main className="mt-8 mx-auto">
+            <>
                 {
                     (!props.disabled) ?
-                        <Link to={`/matches/${props.id}/bet`} className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
-                            <div>
+                        <Link to={`/matches/${props.id}/bet`} className="match bg-slate-400 px-10 py-5 my-4 rounded-xl flex place-content-between uppercase">
+                            <div className="teams">
                                 <div>{props.teamA} - {props.teamB}</div>
                             </div>
-                            <div className="mr-10 ">
+                            <div className="date">
                                 <p>{props.date}, {props.time}</p>
                             </div>
-                            <div>
+                            <div className="state">
                                 <p>{props.status}</p>
                             </div>
                         </Link>
                         :
-                        <div className="bg-slate-400 px-10 py-5 rounded-xl w-full flex place-content-between uppercase">
-                            <div>
+                        <div className="bg-slate-400 px-10 py-5 my-4 rounded-xl flex place-content-between uppercase">
+                            <div className="teams">
                                 <div>{props.teamA} - {props.teamB}</div>
                             </div>
-                            <div className="mr-10 ">
+                            <div className="date">
                                 <p>{props.date}, {props.time}</p>
                             </div>
-                            <div>
+                            <div className="state">
                                 <p>{props.status}</p>
                             </div>
-                            <div>
                             { isAuthenticated ?
-                                <div>
+                                <>
                                     {
                                         getPermissions().orgCode === "org_5f796b31434" ?
-                                            <Link to={`/matches/${props.id}/score`}><button>Add score</button></Link>
+                                            <div className="ml-2">
+                                                <Link to={`/matches/${props.id}/score`}>
+                                                    <button><img src={add} alt="add"/></button>
+                                                </Link>
+                                            </div>
                                             : <></>
                                     }
-                                </div>
+                                </>
                                 : <></>
                             }
-                            </div>
                         </div>
                 }
-            </main>
+            </>
         );
     }
 
@@ -119,7 +122,7 @@ export default function Matches() {
     }
 
     return (
-        <>
+        <main>
             <div className="text-center my-10">
                 <h1>Upcoming matches</h1>
             </div>
@@ -138,6 +141,6 @@ export default function Matches() {
             <div>
                 {finishedMatches}
             </div>
-        </>
+        </main>
     )
 }

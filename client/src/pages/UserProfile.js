@@ -120,7 +120,7 @@ export default function UserProfile() {
     }
 
     return (
-        <div>
+        <main>
             {
                 isAuthenticated ?
                     <div>
@@ -132,6 +132,6 @@ export default function UserProfile() {
                     </div> :
                     <p>Please sign in or register!</p>
             }
-        </div>
+        </main>
     );
 }

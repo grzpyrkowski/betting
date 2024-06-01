@@ -32,7 +32,7 @@ export default function App() {
     );
 
   return (
-      <div className="App h-full">
+      <div className="app">
           <RouterProvider router={router} />
       </div>
   );

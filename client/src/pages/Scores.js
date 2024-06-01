@@ -55,7 +55,7 @@ export default function Scores() {
     sortUsers();
 
     return (
-        <main className="mt-8 mx-auto">
+        <main>
             <div className="chart-container">
                 <h2 className="text-center">Scores</h2>
                 <Bar data={{
