@@ -10,8 +10,8 @@ root.render(
       <KindeProvider
           clientId="5884f94f7ba44096a63581ab6165a293"
           domain="https://euro2024.kinde.com"
-          redirectUri="http://localhost:3000/profile"
-          logoutUri="http://localhost:3000/"
+          redirectUri="https://betting-euro2024.onrender.com/profile"
+          logoutUri="https://betting-euro2024.onrender.com/"
           isDangerouslyUseLocalStorage={true}
       >
           <App />

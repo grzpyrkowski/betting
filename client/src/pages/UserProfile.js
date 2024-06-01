@@ -20,15 +20,14 @@ export default function UserProfile() {
                 {
                     (bets.length !== 0) ?
                             <div>
-                                <p>{props.scoreA}</p>
-                                <p>{props.scoreB}</p>
-                                <p>{props.points_value}</p>
                                 {
                                     matches
                                         .filter(match => match._id === props.match_id)
                                         .map(match => (
                                             <div key={match.id}>
-                                                <div>{match.teamA} - {match.teamB}</div>
+                                                <div className="my-3">
+                                                    {match.teamA} {props.scoreA} - {props.scoreB} {match.teamB}, bet with {props.points_value} points
+                                                </div>
                                             </div>
                                         ))
                                 }
@@ -72,6 +71,7 @@ export default function UserProfile() {
                     scoreA={bet.scoreA}
                     scoreB={bet.scoreB}
                     match_id={bet.match_id}
+                    points_value={bet.points_value}
                 />
             ))
     } catch (err) {

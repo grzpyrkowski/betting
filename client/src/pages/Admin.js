@@ -31,24 +31,30 @@ export default function Admin() {
     }
 
     return (
-        <main className="mt-10 flex place-content-between">
+        <main>
                 <form className="add-match" onSubmit={addMatchSubmit}>
-                    <p>Team A:</p>
-                    <input 
-                        type="text"
-                        id="teamA"
-                        name="teamA"
-                        value={match.teamA}
-                        onChange={handleMatchFormChange}
-                    />
-                    <p>Team B:</p>
-                    <input 
-                        type="text"
-                        id="teamB"
-                        name="teamB"
-                        value={match.teamB}
-                        onChange={handleMatchFormChange}
-                    />
+                    <section className="flex">
+                        <label>
+                            <p>Team A:</p>
+                            <input
+                                type="text"
+                                id="teamA"
+                                name="teamA"
+                                value={match.teamA}
+                                onChange={handleMatchFormChange}
+                            />
+                        </label>
+                        <label className="ml-5">
+                            <p>Team B:</p>
+                            <input
+                                type="text"
+                                id="teamB"
+                                name="teamB"
+                                value={match.teamB}
+                                onChange={handleMatchFormChange}
+                            />
+                        </label>
+                    </section>
                     <p>Date:</p>
                     <input 
                         type="datetime-local"
@@ -58,7 +64,7 @@ export default function Admin() {
                         onChange={handleMatchFormChange}
                     />
                     <br />
-                    <button type="submit">Add match</button>
+                    <button className="mt-3" type="submit">Add match</button>
                 </form>
         </main>
     );
