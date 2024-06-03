@@ -13,29 +13,25 @@ export default function Matches() {
 
     const Match = (props) => {
         return (
-            <>
+            <div className="match bg-slate-400 py-5 px-2 my-4 rounded-xl flex uppercase text-sm items-center">
                 {
                     (!props.disabled) ?
-                        <Link to={`/matches/${props.id}/bet`} className="match bg-slate-400 px-10 py-5 my-4 rounded-xl flex place-content-between uppercase">
-                            <div className="teams">
-                                <div>{props.teamA} - {props.teamB}</div>
+                        <Link to={`/matches/${props.id}/bet`} className="flex items-center">
+                            <div className="teams grow w-3/4">
+                                <p>{props.teamA} - {props.teamB}</p>
+                                <p>{props.day}.{props.month}, {props.time}</p>
                             </div>
-                            <div className="date">
-                                <p>{props.date}, {props.time}</p>
-                            </div>
-                            <div className="state">
+                            <div className="state w-1/4 text-center">
                                 <p>{props.status}</p>
                             </div>
                         </Link>
                         :
-                        <div className="bg-slate-400 px-10 py-5 my-4 rounded-xl flex place-content-between uppercase">
-                            <div className="teams">
-                                <div>{props.teamA} - {props.teamB}</div>
+                        <>
+                            <div className="teams grow w-3/4">
+                                <p>{props.teamA} - {props.teamB}</p>
+                                <p>{props.day}.{props.month}, {props.time}</p>
                             </div>
-                            <div className="date">
-                                <p>{props.date}, {props.time}</p>
-                            </div>
-                            <div className="state">
+                            <div className="state w-1/4">
                                 <p>{props.status}</p>
                             </div>
                             { isAuthenticated ?
@@ -52,9 +48,9 @@ export default function Matches() {
                                 </>
                                 : <></>
                             }
-                        </div>
+                        </>
                 }
-            </>
+            </div>
         );
     }
 
@@ -73,7 +69,8 @@ export default function Matches() {
                 <Match
                     key={match._id}
                     id={match._id}
-                    date={match.date.slice(0, 10)}
+                    month={match.date.slice(6, 7)}
+                    day={match.date.slice(8, 10)}
                     time={match.date.slice(11, 16)}
                     status={match.status}
                     teamA={match.teamA}
@@ -91,7 +88,8 @@ export default function Matches() {
             <Match
                 key={match._id}
                 id={match._id}
-                date={match.date.slice(0, 10)}
+                month={match.date.slice(6, 7)}
+                day={match.date.slice(8, 10)}
                 time={match.date.slice(11, 16)}
                 status={match.status}
                 teamA={match.teamA}
@@ -109,7 +107,8 @@ export default function Matches() {
             .map(match => (
             <Match
                 key={match._id}
-                date={match.date.slice(0, 10)}
+                month={match.date.slice(6, 7)}
+                day={match.date.slice(8, 10)}
                 time={match.date.slice(11, 16)}
                 status={match.status}
                 teamA={match.teamA}
@@ -122,23 +121,17 @@ export default function Matches() {
     }
 
     return (
-        <main>
-            <div className="text-center my-10">
-                <h1>Upcoming matches</h1>
-            </div>
-            <div>
+        <main className="">
+            <div className="my-5">
+                <h1 className="text-center">Upcoming matches</h1>
                 {upcomingMatches}
             </div>
-            <div className="text-center my-10">
-                <h1>Pending matches</h1>
-            </div>
-            <div>
+            <div className="my-5">
+                <h1 className="text-center">Pending matches</h1>
                 {pendingMatches}
             </div>
-            <div className="text-center my-10">
-                <h1>Finished matches</h1>
-            </div>
-            <div>
+            <div className="my-5">
+                <h1 className="text-center">Finished matches</h1>
                 {finishedMatches}
             </div>
         </main>

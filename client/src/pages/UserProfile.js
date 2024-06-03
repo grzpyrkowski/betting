@@ -19,15 +19,13 @@ export default function UserProfile() {
             <>
                 {
                     (bets.length !== 0) ?
-                            <div>
+                            <div className="scores-panel bets mt-2.5">
                                 {
                                     matches
                                         .filter(match => match._id === props.match_id)
                                         .map(match => (
-                                            <div key={match.id}>
-                                                <div className="my-3">
-                                                    {match.teamA} {props.scoreA} - {props.scoreB} {match.teamB}, bet with {props.points_value} points
-                                                </div>
+                                            <div className="my-2" key={match.id}>
+                                                {match.teamA} {props.scoreA} - {props.scoreB} {match.teamB}, {props.points_value} pts
                                             </div>
                                         ))
                                 }
@@ -82,16 +80,10 @@ export default function UserProfile() {
         let amount = points.filter(point => point.user_id === user.id)
         if (amount.length === 0) {
             usersPoints = (
-                <div>
-                    <span>It seems you have no points now! Get your first 50 now! </span>
-                    <br/>
-                    <br/>
-                    <button onClick={getFirstPoints}> -> Get first 50 points</button>
-                    <br/>
-                </div>
+                <button className="scores-panel btn" onClick={getFirstPoints}>Get 50 points</button>
             )
         } else {
-            usersPoints = `Currently you have ${amount[0].amount} points.`
+            usersPoints = (<div className="points pl-4 pr-3"> <p className="text-4xl -mb-1">{amount[0].amount}</p> points </div>)
         }
     } catch (err) {
         console.error(err);
@@ -123,13 +115,20 @@ export default function UserProfile() {
         <main>
             {
                 isAuthenticated ?
-                    <div>
-                        Hello {username}! {usersPoints}
-                        <div>
-                            <p>Your bets:</p>
+                    <>
+                        Hello {username}!
+                        <div className="mt-5">
+                            <div className="flex place-content-between">
+                                <div className="scores-panel bets mr-2.5 flex items-center grow uppercase ">
+                                    <p className="mx-auto">Your bets</p>
+                                </div>
+                                {usersPoints}
+                            </div>
                             {usersBets}
                         </div>
-                    </div> :
+
+
+                    </> :
                     <p>Please sign in or register!</p>
             }
         </main>

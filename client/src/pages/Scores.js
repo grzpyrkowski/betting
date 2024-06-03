@@ -56,15 +56,17 @@ export default function Scores() {
 
     return (
         <main>
-            <div className="chart-container">
+            <div className="chart-container mt-5">
                 <h2 className="text-center">Scores</h2>
-                <Bar data={{
+                <Bar
+                    className="mt-3"
+                    data={{
                     labels: sortedUsers.map(user => user.username),
                     datasets: [
                         {
                             label: "Points",
                             data: sortedPoints.map(point => point.amount),
-                            backgroundColor: "rgb(75,192,108)",
+                            backgroundColor: "#3bbd29",
                             borderColor: "black",
                             borderWidth: 1
                         }

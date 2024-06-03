@@ -6,15 +6,15 @@ export default function AuthenticatedRoute() {
     const { isLoading, isAuthenticated, login } = useKindeAuth();
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className="notification">Loading...</div>;
     }
 
     if (!isLoading && !isAuthenticated) {
         return (
-            <div>
-                <div>Not Authenticated, you need to login</div>
-                <button onClick={login}>Login</button>
-            </div>
+            <main className="text-center">
+                <h2 className="notification">Not Authenticated, you need to login</h2>
+                <button className="notification btn border-white border-2 mt-3" onClick={login}>Login</button>
+            </main>
         );
     }
 

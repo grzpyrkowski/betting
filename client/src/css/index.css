@@ -3,58 +3,64 @@
 @tailwind utilities;
 @layer base {
     html {
-        @apply text-white text-xl font-roboto;
+        @apply text-white text-xl font-inter;
         background-color: #10253B;
     }
 
     .app {
+        width: calc(100vw);
         height: calc(100vh);
     }
 
+    main {
+        @apply text-base mt-4;
+    }
+
+    header, main, footer, .logo-btn, .header-btns, .footer-btns {
+        @apply mx-auto;
+    }
+
+    main, .logo-btn, .header-btns, .footer-btns {
+        width: 90%;
+    }
+
     header, header button {
-        @apply justify-center;
-        text-transform: uppercase;
-        padding: .5rem;
         background-color: #10253B;
         text-align: center;
     }
 
     .btn {
-        @apply mx-3;
+        text-transform: uppercase;
         transition: background-color 0.5s ease;
         border-radius: 10px;
+        padding: .25rem .5rem;
     }
 
     .btn:hover {
         background-color: #475569;
     }
 
-    .banner {
-        display: block;
-    }
-
-    main, .header-btns, .footer-btns {
-        width: calc(100vh + 40px);
-    }
-
-    main {
-        margin: 2rem auto 0 auto;
-    }
-
-    .add-match input {
+    input {
         color: black;
+        border-radius: 2px;
     }
 
-    .teams {
-        width: 50%;
+    .logo-btn {
+        margin: .5rem 0;
     }
 
-    .date {
-        width: 30%;
+    .scores-panel {
+        @apply border-2 border-white rounded-lg p-2;
     }
 
-    .state {
-        width: 20%;
-        text-align: right;
+    .notification {
+        @apply text-center text-2xl;
+    }
+
+    .points {
+        @apply border-2 border-white rounded-lg p-2 text-center;
+        background-color: #3bbd29;
+        border-color: #3bbd29;
+        color: #10253B;
     }
 }
