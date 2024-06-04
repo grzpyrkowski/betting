@@ -70,8 +70,8 @@ export default function AdminScore() {
 
     return (
         <main>
-            <form className="add-match" onSubmit={addScoreSubmit}>
-                <section className="flex place-content-between">
+            <form onSubmit={addScoreSubmit}>
+                <section className="flex">
                     <div>
                         <p>Team A:</p>
                         <input
@@ -83,7 +83,7 @@ export default function AdminScore() {
                             onChange={handleScoreFormChange}
                         />
                     </div>
-                    <div className="text-right">
+                    <div>
                         <p>Team B:</p>
                         <input
                             className="w-24"
@@ -95,7 +95,7 @@ export default function AdminScore() {
                         />
                     </div>
                 </section>
-                <button className="btn mt-2 float-right" type="submit">Add score</button>
+                <button className="btn mt-2" type="submit">Add score</button>
             </form>
         </main>
     );

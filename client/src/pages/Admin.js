@@ -32,8 +32,8 @@ export default function Admin() {
 
     return (
         <main>
-                <form className="add-match" onSubmit={addMatchSubmit}>
-                    <section className="flex place-content-between">
+                <form onSubmit={addMatchSubmit}>
+                    <section className="flex">
                         <div>
                             <p>Team A:</p>
                             <input
@@ -45,7 +45,7 @@ export default function Admin() {
                                 onChange={handleMatchFormChange}
                             />
                         </div>
-                        <div className="text-right">
+                        <div>
                             <p>Team B:</p>
                             <input
                                 className="w-24"
@@ -67,7 +67,7 @@ export default function Admin() {
                         onChange={handleMatchFormChange}
                     />
                     <br />
-                    <button className="btn mt-3 float-right" type="submit">Add match</button>
+                    <button className="btn mt-3" type="submit">Add match</button>
                 </form>
         </main>
     );

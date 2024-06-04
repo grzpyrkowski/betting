@@ -19,13 +19,18 @@ export default function UserProfile() {
             <>
                 {
                     (bets.length !== 0) ?
-                            <div className="scores-panel bets mt-2.5">
+                            <div className="scores-panel mt-2.5">
                                 {
                                     matches
                                         .filter(match => match._id === props.match_id)
                                         .map(match => (
-                                            <div className="my-2" key={match.id}>
-                                                {match.teamA} {props.scoreA} - {props.scoreB} {match.teamB}, {props.points_value} pts
+                                            <div className="my-2 flex place-content-between items-center" key={match.id}>
+                                                <div className="w-3/5 sm:w-4/5 md:flex sm:place-content-between">
+                                                    <span>{match.teamA} </span>
+                                                    <span>{props.scoreA} - {props.scoreB}</span>
+                                                    <span> {match.teamB}</span>
+                                                </div>
+                                                <div className="">{props.points_value} points</div>
                                             </div>
                                         ))
                                 }
@@ -112,15 +117,15 @@ export default function UserProfile() {
     }
 
     return (
-        <main>
+        <main className="users-bets">
             {
                 isAuthenticated ?
                     <>
                         Hello {username}!
                         <div className="mt-5">
                             <div className="flex place-content-between">
-                                <div className="scores-panel bets mr-2.5 flex items-center grow uppercase ">
-                                    <p className="mx-auto">Your bets</p>
+                                <div className="scores-panel mr-2.5 flex items-center grow uppercase">
+                                    <p className="mx-auto md:text-xl">Your bets</p>
                                 </div>
                                 {usersPoints}
                             </div>

@@ -87,8 +87,8 @@ export default function Bet() {
             { isAlreadyBet ?
                 <div className="notification">You already bet this one!</div>
                 :
-                <form className="add-match" onSubmit={handleSubmit}>
-                    <section className="flex place-content-between">
+                <form onSubmit={handleSubmit}>
+                    <section className="flex">
                         <div>
                             <p>{match.teamA}</p>
                             <input
@@ -101,7 +101,7 @@ export default function Bet() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="text-right">
+                        <div>
                             <p>{match.teamB}</p>
                             <input
                                 className="w-24"
@@ -115,7 +115,8 @@ export default function Bet() {
                         </div>
                     </section>
                     <section className="mt-3">
-                        <p>How much points do you want to bet? (max. 10)</p>
+                        <p>How much points do you want to bet?
+                            (max. 10)</p>
                         <input
                             className="w-20"
                             type="number"
@@ -127,7 +128,7 @@ export default function Bet() {
                             onChange={handleChange}
                         />
                     </section>
-                    <button className="mt-2 btn float-right" type="submit">Add bet</button>
+                    <button className="mt-2 btn" type="submit">Add bet</button>
                 </form>
             }
         </main>

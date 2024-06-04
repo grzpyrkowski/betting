@@ -13,25 +13,25 @@ export default function Matches() {
 
     const Match = (props) => {
         return (
-            <div className="match bg-slate-400 py-5 px-2 my-4 rounded-xl flex uppercase text-sm items-center">
+            <>
                 {
                     (!props.disabled) ?
-                        <Link to={`/matches/${props.id}/bet`} className="flex items-center">
+                        <Link to={`/matches/${props.id}/bet`} className="match">
                             <div className="teams grow w-3/4">
                                 <p>{props.teamA} - {props.teamB}</p>
                                 <p>{props.day}.{props.month}, {props.time}</p>
                             </div>
-                            <div className="state w-1/4 text-center">
-                                <p>{props.status}</p>
+                            <div className="state w-1/4 md:text-center">
+                                <p className="text-center">{props.status}</p>
                             </div>
                         </Link>
                         :
-                        <>
+                        <div className="match">
                             <div className="teams grow w-3/4">
                                 <p>{props.teamA} - {props.teamB}</p>
                                 <p>{props.day}.{props.month}, {props.time}</p>
                             </div>
-                            <div className="state w-1/4">
+                            <div className="state w-1/4 md:text-center">
                                 <p>{props.status}</p>
                             </div>
                             { isAuthenticated ?
@@ -48,9 +48,9 @@ export default function Matches() {
                                 </>
                                 : <></>
                             }
-                        </>
+                        </div>
                 }
-            </div>
+            </>
         );
     }
 
