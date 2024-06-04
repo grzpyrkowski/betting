@@ -1,5 +1,4 @@
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
-import './css/App.css';
 import Layout from "./pages/Layout";
 import LandingPage from "./pages/LandingPage";
 import Matches from "./pages/Matches";

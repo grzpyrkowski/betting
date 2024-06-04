@@ -32,31 +32,34 @@ export default function Admin() {
 
     return (
         <main>
-                <form className="add-match" onSubmit={addMatchSubmit}>
+                <form onSubmit={addMatchSubmit}>
                     <section className="flex">
-                        <label>
+                        <div>
                             <p>Team A:</p>
                             <input
+                                className="w-24"
                                 type="text"
                                 id="teamA"
                                 name="teamA"
                                 value={match.teamA}
                                 onChange={handleMatchFormChange}
                             />
-                        </label>
-                        <label className="ml-5">
+                        </div>
+                        <div>
                             <p>Team B:</p>
                             <input
+                                className="w-24"
                                 type="text"
                                 id="teamB"
                                 name="teamB"
                                 value={match.teamB}
                                 onChange={handleMatchFormChange}
                             />
-                        </label>
+                        </div>
                     </section>
                     <p>Date:</p>
-                    <input 
+                    <input
+                        className="w-24"
                         type="datetime-local"
                         id="date"
                         name="date"
@@ -64,7 +67,7 @@ export default function Admin() {
                         onChange={handleMatchFormChange}
                     />
                     <br />
-                    <button className="mt-3" type="submit">Add match</button>
+                    <button className="btn mt-3" type="submit">Add match</button>
                 </form>
         </main>
     );

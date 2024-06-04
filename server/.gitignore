@@ -4,3 +4,6 @@
 /secret
 .env
 cors.js
+
+#production
+index.js

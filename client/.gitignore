@@ -9,7 +9,8 @@
 /coverage
 
 # production
-
+/src/globalConsts.js
+/src/index.js
 
 # misc
 .DS_Store
@@ -24,4 +25,3 @@ yarn-error.log*
 
 /.idea
 *.xml
-.env

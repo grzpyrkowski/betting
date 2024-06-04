@@ -2,59 +2,166 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+    /*whole ui*/
     html {
-        @apply text-white text-xl font-roboto;
+        @apply text-white lg:text-xl xl:text-2xl font-inter;
         background-color: #10253B;
     }
 
     .app {
+        width: calc(100vw);
         height: calc(100vh);
     }
 
-    header, header button {
-        @apply justify-center;
-        text-transform: uppercase;
-        padding: .5rem;
-        background-color: #10253B;
-        text-align: center;
+    main {
+        @apply text-base mt-4 mx-auto;
+        max-width: 1440px;
+    }
+
+    header, main, footer, .logo-btn, .header-btns, .footer-btns {
+        @apply mx-auto;
+    }
+
+    main, .header-btns, .footer-btns {
+        width: 90%;
     }
 
     .btn {
-        @apply mx-3;
+        @apply my-auto;
+        text-transform: uppercase;
         transition: background-color 0.5s ease;
         border-radius: 10px;
+        padding: .25rem .5rem;
     }
 
     .btn:hover {
         background-color: #475569;
     }
 
-    .banner {
-        display: block;
+    .notification {
+        @apply text-center text-2xl;
     }
 
-    main, .header-btns, .footer-btns {
-        width: calc(100vh + 40px);
-    }
-
-    main {
-        margin: 2rem auto 0 auto;
-    }
-
-    .add-match input {
+    input {
         color: black;
+        border-radius: 2px;
     }
 
-    .teams {
-        width: 50%;
+    form, form section {
+        @apply place-content-evenly mx-auto text-center;
     }
 
-    .date {
-        width: 30%;
+    /*layout*/
+    header, header button {
+        @apply md:text-lg;
+        background-color: #10253B;
+        text-align: center;
     }
 
-    .state {
-        width: 20%;
-        text-align: right;
+    .header-btns {
+        max-width: 2100px;
+    }
+
+    .footer-btns {
+        max-width: 1600px;
+    }
+
+    .logo {
+        @apply -ml-1.5;
+    }
+
+    @media (min-width: 1440px) {
+        .logo {
+            @apply -ml-2.5;
+        }
+    }
+
+    @media (min-width: 2160px) {
+        .logo {
+            @apply -ml-3;
+        }
+    }
+
+    .small-header-btns {
+        @apply flex max-sm:flex-col place-content-between align-middle justify-center;
+    }
+
+    .logo-btn {
+        margin: .5rem 0;
+    }
+
+    .logo {
+        width: calc(22vw);
+        max-width: 200px;
+    }
+
+    @media (min-width: 600px){
+        .logo {
+            width: calc(20vw);
+        }
+        header .btn {
+            @apply mx-2;
+        }
+    }
+
+    @media (min-width: 800px){
+        .logo {
+            width: calc(18vw);
+        }
+    }
+
+    @media (min-width: 1100px) {
+        .logo {
+            width: calc(15vw);
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .logo {
+            width: calc(15vw);
+        }
+    }
+
+    /*landing page*/
+    .down-arrow {
+        @apply w-1/12 mx-auto;
+        max-width: 85px;
+    }
+
+    @media (min-width: 768px) {
+        .down-arrow {
+            width: calc(5vw);
+        }
+    }
+
+    /*matches*/
+    .match {
+        @apply bg-slate-400 py-5 px-2 md:px-5 my-4 rounded-xl flex uppercase text-sm md:text-base items-center;
+    }
+
+    @media (min-width: 464px) {
+        .teams {
+            margin-left: calc(7vw);
+        }
+    }
+    @media (min-width: 1600px) {
+        .teams {
+            margin-left: 112px;
+        }
+    }
+
+    /*bet*/
+
+    /*scores*/
+    .scores-panel {
+        @apply border-2 border-white rounded-lg p-2;
+    }
+
+    /*user profile*/
+    .points {
+        @apply border-2 border-white rounded-lg p-2 text-center;
+        background-color: #3bbd29;
+        border-color: #3bbd29;
+        color: #10253B;
     }
 }

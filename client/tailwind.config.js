@@ -3,7 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      sm: '440px',
+      sm: '465px',
       md: '768px',
       lg: '1024px',
       xl: '1440px',
@@ -11,14 +11,10 @@ module.exports = {
     },
     extend: {
       boxShadow: {
-        'fullShadow-3': '0 0 5px 5px',
+        'fullShadow-3': '0 0 5px 3px',
       },
       fontFamily: {
-        "inter": ['"Inter", sans-serif'],
-        "ptFont": ['"PT", sans-serif'],
-        "montserrat": ['"Montserrat", serif'],
-        "baskerville": ['"Libre-Baskerville", sans-serif]'],
-        "roboto": ['"Roboto", sans-serif]']
+        "inter": ['"Inter", sans-serif']
       }
     },
   },

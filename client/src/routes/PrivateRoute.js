@@ -8,6 +8,14 @@ export default function PrivateRoute() {
         return <div>Loading...</div>;
     }
 
+    if (!isLoading && getPermissions().orgCode !== "org_5f796b31434" ) {
+        return (
+            <main>
+                You shouldn't be here I guess ;)
+            </main>
+        )
+    }
+
     if (!isLoading && getPermissions().orgCode === "org_5f796b31434" ) {
         return <Outlet />
     }

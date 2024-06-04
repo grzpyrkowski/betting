@@ -85,13 +85,14 @@ export default function Bet() {
     return (
         <main>
             { isAlreadyBet ?
-                <div className="text-center text-2xl pt-5">You already bet this one!</div>
+                <div className="notification">You already bet this one!</div>
                 :
-                <form className="add-match" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <section className="flex">
                         <div>
                             <p>{match.teamA}</p>
                             <input
+                                className="w-24"
                                 type="number"
                                 id="scoreA"
                                 name="scoreA"
@@ -100,9 +101,10 @@ export default function Bet() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="ml-5">
+                        <div>
                             <p>{match.teamB}</p>
                             <input
+                                className="w-24"
                                 type="number"
                                 id="scoreB"
                                 name="scoreB"
@@ -113,8 +115,10 @@ export default function Bet() {
                         </div>
                     </section>
                     <section className="mt-3">
-                        <p>How much points with you wanna bet? (max. 10)</p>
+                        <p>How much points do you want to bet?
+                            (max. 10)</p>
                         <input
+                            className="w-20"
                             type="number"
                             id="points_value"
                             name="points_value"
@@ -124,7 +128,7 @@ export default function Bet() {
                             onChange={handleChange}
                         />
                     </section>
-                    <button className="mt-3" type="submit">Add bet</button>
+                    <button className="mt-2 btn" type="submit">Add bet</button>
                 </form>
             }
         </main>
