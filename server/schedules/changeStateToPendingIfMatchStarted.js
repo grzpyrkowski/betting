@@ -5,7 +5,7 @@ import 'dotenv/config';
 export function changeStateToPendingIfMatchStarted() {
     const client = new MongoClient(process.env.DATABASE_URL);
 
-    schedule("0 * * * *", async function () {
+    schedule("*/5 * * * *", async function () {
         try {
             await client.db("euro").collection("matches")
                 .updateMany({status: "not started", date: {$lt: new Date()}}, {$set: {status: "pending"}});
