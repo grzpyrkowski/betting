@@ -9,12 +9,13 @@ import AuthenticatedRoute from "./routes/AuthenticatedRoute";
 import Bet from "./pages/Bet";
 import AdminScore from "./pages/AdminScore";
 import Scores from "./pages/Scores";
+import ErrorBoundary from "./pages/ErrorBoundary";
 
 export default function App() {
 
     const router = createBrowserRouter(
         createRoutesFromElements(
-            <Route element={<Layout />}>
+            <Route element={<Layout />} errorElement={<ErrorBoundary />}>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/matches" element={<Matches />} />
                 <Route path="/scores" element={<Scores />} />

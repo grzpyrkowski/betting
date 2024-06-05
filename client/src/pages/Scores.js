@@ -6,7 +6,11 @@ import axios from "axios";
 import { Bar } from "react-chartjs-2";
 
 Chart.register(CategoryScale);
-Chart.defaults.font.size = 20;
+Chart.defaults.font.size = 15;
+
+export const options = {
+    indexAxis: 'y',
+}
 
 export default function Scores() {
     const [users, setUsers] = useState([]);
@@ -32,7 +36,7 @@ export default function Scores() {
     function sortPoints() {
         for (let i = 0; i < sortedPoints.length; i++) {
             for (let j = 0; j < (sortedPoints.length - i - 1); j++) {
-                if (sortedPoints[j].amount > sortedPoints[j + 1].amount) {
+                if (sortedPoints[j].amount < sortedPoints[j + 1].amount) {
                     let temp = sortedPoints[j];
                     sortedPoints[j] = sortedPoints[j + 1];
                     sortedPoints[j + 1] = temp;
@@ -61,17 +65,18 @@ export default function Scores() {
                 <Bar
                     className="mt-3"
                     data={{
-                    labels: sortedUsers.map(user => user.username),
-                    datasets: [
-                        {
-                            label: "Points",
-                            data: sortedPoints.map(point => point.amount),
-                            backgroundColor: "#3bbd29",
-                            borderColor: "black",
-                            borderWidth: 1
-                        }
-                    ],
-                }}
+                        labels: sortedUsers.map(user => user.username),
+                        datasets: [
+                            {
+                                label: "Points",
+                                data: sortedPoints.map(point => point.amount),
+                                backgroundColor: "#3bbd29",
+                                borderColor: "black",
+                                borderWidth: 1
+                            }
+                        ],
+                    }}
+                    options={options}
                 />
             </div>
         </main>
