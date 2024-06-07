@@ -15,7 +15,7 @@ export function saveUsersInDatabase() {
         } catch (err) {
             console.log(err);
         } finally {
-            console.log("update done")
+            console.log("users saved in mongodb")
         }
     });
 }
