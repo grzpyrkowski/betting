@@ -31,7 +31,7 @@ export default function Matches() {
                                 <p>{props.teamA} - {props.teamB}</p>
                                 <p>{props.day}.{props.month}, {props.time}</p>
                             </div>
-                            <div className="state w-1/4 md:text-center">
+                            <div className="state w-1/4 text-center">
                                 <p>{props.status}</p>
                             </div>
                             { isAuthenticated ?

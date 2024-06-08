@@ -24,13 +24,13 @@ export default function UserProfile() {
                                     matches
                                         .filter(match => match._id === props.match_id)
                                         .map(match => (
-                                            <div className="my-2 flex place-content-between items-center" key={match.id}>
-                                                <div className="w-3/5 sm:w-4/5 md:flex sm:place-content-between">
-                                                    <span>{match.teamA} </span>
-                                                    <span>{props.scoreA} - {props.scoreB}</span>
-                                                    <span> {match.teamB}</span>
+                                            <div className="my-2 items-center" key={match.id}>
+                                                <div className="w-12/12 flex place-content-between items-center">
+                                                    <span className="w-3/12 sm:w-1/3">{match.teamA}</span>
+                                                    <span className="w-2/12 sm:text-center">{props.scoreA} - {props.scoreB}</span>
+                                                    <span className="w-3/12 sm:w-1/3 sm:text-right">{match.teamB}</span>
+                                                    <span className="w-3/12 sm:w-1/6  text-right">{props.points_value} points</span>
                                                 </div>
-                                                <div className="">{props.points_value} points</div>
                                             </div>
                                         ))
                                 }
