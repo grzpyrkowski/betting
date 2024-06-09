@@ -43,33 +43,41 @@ export default function Bet() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        points.forEach(point => {
-            if (point.user_id === user.id) {
-                if (bet.points_value <= point.amount) {
-                    try {
-                        axios.post(`${baseUrl}api/bets`, {
-                            scoreA: bet.scoreA,
-                            scoreB: bet.scoreB,
-                            points_value: bet.points_value,
-                            match_id: id,
-                            user_id: user.id,
-                        });
-                    } catch (err) {
-                        console.error(err);
+        let time = new Date();
+        time.setHours(time.getHours() + 2);
+        if (match.date > time.toISOString()) {
+            points.forEach(point => {
+                if (point.user_id === user.id) {
+                    if (bet.points_value <= point.amount) {
+                        try {
+                            axios.post(`${baseUrl}api/bets`, {
+                                scoreA: bet.scoreA,
+                                scoreB: bet.scoreB,
+                                points_value: bet.points_value,
+                                match_id: id,
+                                user_id: user.id,
+                            });
+                        } catch (err) {
+                            console.error(err);
+                        }
+                        try {
+                            axios.put(`${baseUrl}api/points/${point._id}`, {
+                                amount: point.amount - bet.points_value
+                            });
+                        } catch (err) {
+                            console.error(err);
+                        }
+                        alert("Bet added successfully!");
+                        navigate('/matches');
+                    } else {
+                        alert("You don't have that much points to place that bet!");
                     }
-                    try {
-                        axios.put(`${baseUrl}api/points/${point._id}`, {
-                            amount: point.amount - bet.points_value
-                        });
-                    } catch (err) {
-                        console.error(err);
-                    }
-                    alert("Bet added successfully!");
-                    navigate('/matches');
-                } else {
-                    alert("You don't have that much points to place that bet!");
-                }}
-        });
+                }
+            });
+        } else {
+            alert("Match already started!");
+            navigate("/matches");
+        }
     }
 
     function checkIfAlreadyBet() {

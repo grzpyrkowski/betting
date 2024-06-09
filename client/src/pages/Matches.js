@@ -14,30 +14,36 @@ export default function Matches() {
     const Match = (props) => {
         return (
             <>
-                {
-                    (!props.disabled) ?
-                        <Link to={`/matches/${props.id}/bet`} className="match">
-                            <div className="teams grow w-3/4">
-                                <p>{props.teamA} - {props.teamB}</p>
-                                <p>{props.day}.{props.month}, {props.time}</p>
+            {
+                (!props.disabled) ?
+                    <Link to={`/matches/${props.id}/bet`} className="match">
+                        <div className="teams grow w-3/4">
+                            <p>{props.teamA} - {props.teamB}</p>
+                            <p>{props.day}.{props.month}, {props.time}</p>
+                        </div>
+                        <div className="state w-1/4 md:text-center">
+                            <p className="text-center">{props.status}</p>
+                        </div>
+                    </Link>
+                    :
+                    <div className="match">
+                        <div className="teams grow w-3/4">
+                            <p>{props.teamA} - {props.teamB}</p>
+                            <p>{props.day}.{props.month}, {props.time}</p>
+                        </div>
+                        {props.teamA_score || props.teamA_score === 0 ?
+                            <div>
+                                <p>{props.teamA_score} - {props.teamB_score}</p>
                             </div>
-                            <div className="state w-1/4 md:text-center">
-                                <p className="text-center">{props.status}</p>
-                            </div>
-                        </Link>
-                        :
-                        <div className="match">
-                            <div className="teams grow w-3/4">
-                                <p>{props.teamA} - {props.teamB}</p>
-                                <p>{props.day}.{props.month}, {props.time}</p>
-                            </div>
+                            :
                             <div className="state w-1/4 text-center">
                                 <p>{props.status}</p>
                             </div>
-                            { isAuthenticated ?
-                                <>
-                                    {
-                                        getPermissions().orgCode === "org_5f796b31434" ?
+                        }
+                        {isAuthenticated && props.status === "pending" ?
+                            <>
+                                {
+                                    getPermissions().orgCode === "org_5f796b31434" ?
                                             <div className="ml-2">
                                                 <Link to={`/matches/${props.id}/score`}>
                                                     <button><img src={add} alt="add"/></button>
@@ -113,6 +119,8 @@ export default function Matches() {
                 status={match.status}
                 teamA={match.teamA}
                 teamB={match.teamB}
+                teamA_score={match.teamA_score}
+                teamB_score={match.teamB_score}
                 disabled={true}
             />
         ))

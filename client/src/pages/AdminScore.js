@@ -60,7 +60,9 @@ export default function AdminScore() {
         });
         try {
             axios.put(`${baseUrl}api/matches/${id}`, {
-                status: "finished"
+                status: "finished",
+                teamA_score: score.correct_scoreA,
+                teamB_score: score.correct_scoreB
             });
         } catch (err) {
             console.error(err)
