@@ -18,6 +18,14 @@ const MatchSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        teamA_score: {
+            type: Number,
+            required: false
+        },
+        teamB_score: {
+            type: Number,
+            required: false
+        }
     },
     {
         timestamps: true
