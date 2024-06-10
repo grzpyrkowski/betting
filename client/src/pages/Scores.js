@@ -1,15 +1,27 @@
-import Chart from "chart.js/auto";
-import { CategoryScale } from "chart.js";
 import React, {useEffect, useState} from "react";
 import {baseUrl} from "../globalConsts";
 import axios from "axios";
+import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
-Chart.register(CategoryScale);
-Chart.defaults.font.size = 15;
+Chart.defaults.font.size = 14;
+Chart.defaults.font.lineHeight = 0.1;
+Chart.defaults.color = "white";
 
 export const options = {
     indexAxis: 'y',
+    scales: {
+        x: {
+            grid: {
+                color: "#10253B"
+            }
+        },
+        y: {
+            grid: {
+                color: "#10253B"
+            }
+        }
+    }
 }
 
 export default function Scores() {
@@ -70,9 +82,7 @@ export default function Scores() {
                             {
                                 label: "Points",
                                 data: sortedPoints.map(point => point.amount),
-                                backgroundColor: "#3bbd29",
-                                borderColor: "black",
-                                borderWidth: 1
+                                backgroundColor: "#3bbd29"
                             }
                         ],
                     }}

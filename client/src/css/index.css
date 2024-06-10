@@ -136,7 +136,7 @@
 
     /*matches*/
     .match {
-        @apply bg-slate-400 py-5 px-2 md:px-5 my-4 rounded-xl flex uppercase text-sm md:text-base items-center;
+        @apply bg-slate-400 py-2.5 px-2 md:px-5 my-2.5 rounded-xl flex uppercase text-sm md:text-base items-center;
     }
 
     @media (min-width: 464px) {
