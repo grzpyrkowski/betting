@@ -48,7 +48,7 @@ export default function Layout() {
                 </div>
             </header>
             <Outlet/>
-            <footer className="mt-14 bg-slate-600 relative -mb-96 text-sm">
+            <footer className="mt-14 relative -mb-96 text-sm">
                 <div className="footer-btns mx-auto py-6">
                     <div className="border-slate-800 flex place-content-between sm:place-content-evenly">
                         <FooterButton url={facebook} value="Facebook"/>
