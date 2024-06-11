@@ -32,7 +32,7 @@ export default function Matches() {
                             <p>{props.day}.{props.month}, {props.time}</p>
                         </div>
                         {props.teamA_score || props.teamA_score === 0 ?
-                            <div>
+                            <div className="w-1/4 text-center">
                                 <p>{props.teamA_score} - {props.teamB_score}</p>
                             </div>
                             :
