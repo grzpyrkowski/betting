@@ -63,8 +63,9 @@ export default function Matches() {
     useEffect(() => {
         axios.get(`${baseUrl}api/matches`)
             .then((data) => {
-                setMatches(data.data);
-            });
+                setMatches(data.data.sort((a,b) => {
+                    return new Date(a.date).getTime() - new Date(b.date).getTime();
+            }));
     }, []);
 
 
