@@ -38,7 +38,7 @@ connectDatabase().then(() => {
     app.listen(port, () => {
         console.log("Server started!");
         changeStateToPendingIfMatchStarted();
-        // addDailyPoints();
+        addDailyPoints();
         saveUsersInDatabase();
     });
 });
