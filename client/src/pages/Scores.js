@@ -9,6 +9,7 @@ Chart.defaults.font.lineHeight = 0.1;
 Chart.defaults.color = "white";
 
 export const options = {
+    maintainAspectRatio: false,
     indexAxis: 'y',
     scales: {
         x: {

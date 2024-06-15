@@ -157,6 +157,10 @@
         @apply border-2 border-white rounded-lg p-2;
     }
 
+    .chart-container {
+        height: calc(60vh);
+    }
+
     /*user profile*/
     .points {
         @apply border-2 border-white rounded-lg p-2 text-center;
