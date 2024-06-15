@@ -5,7 +5,6 @@ import {getUsers} from "../kinde/fetchUsers.js";
 
 export function saveUsersInDatabase() {
     const client = new MongoClient(process.env.DATABASE_URL);
-
     schedule("*/15 * * * *", async function () {
         try {
             getUsers().then(res => res.users.forEach((user) => {
