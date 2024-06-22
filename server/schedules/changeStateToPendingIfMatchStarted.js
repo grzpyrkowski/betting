@@ -14,7 +14,6 @@ export function changeStateToPendingIfMatchStarted() {
         } catch (err) {
             console.log(err);
         } finally {
-            console.log("changed state of matches");
         }
     });
 }
