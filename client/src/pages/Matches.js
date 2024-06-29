@@ -132,6 +132,10 @@ export default function Matches() {
 
     return (
         <main className="">
+            <div className="text-center">
+                <p>W TEJ CZĘŚCI MECZE NIE MOGĄ SIĘ SKOŃCZYĆ REMISAMI, TOTEŻ PROSZĘ TAKOWYCH NIE OBSTAWIAĆ</p>
+                <p>PRZYKŁAD: JEŚLI DOJDZIE DO KARNYCH PRZY WYNIKU 1:1, DRUŻYNA, KTÓRA WYGRA KARNE, WYGRYWA MECZ 2:1</p>
+            </div>
             <div className="my-5">
                 <h1 className="text-center">Upcoming matches</h1>
                 {upcomingMatches}
